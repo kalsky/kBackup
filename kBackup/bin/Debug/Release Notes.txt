@@ -1,0 +1,42 @@
+Release Notes 
+//////////////////////////////V0.4//////////////////////////////
+Updates
+•	Updated look and feel.
+•	Backend updates to clean up code and add comments.
+•	Added Readme.txt and Release Notes.txt to package.
+
+Resolved Bugs
+•	Resolved issue where duplicate entries were made for articles in the BackupLog.txt file.
+
+
+//////////////////////////////V0.3//////////////////////////////
+Updates
+•	Instead of using the backup folder chosen, a new folder will be created in the folder 
+    selected by the user in the format of Backup_[CurrentDateTime] to allow for multiple 
+	backups without much additional effort on the users part.
+•	Images within articles are now backed up to an images folder within the backup folder.
+•	Images are saved in the format of [ArticleId]_[ImageName].[FileType] e.g. 203792498_SNAG-0033.png
+•	Backed up images will also be listed in the BackupLog.txt file.
+
+Known Issues
+•	Issue with duplicate entries of backed up articles in BackupLog.txt file.
+
+
+//////////////////////////////V0.2//////////////////////////////
+Updates
+•	Added a log file which is created in the backup directory and will record the section Id 
+    and Article name of each backed up article.
+	
+Resolved Bugs
+•	Resolved user authentication issue which prevented users from retrieving all help articles 
+    they have access to.
+•	Resolved issue where when user selected Backup button and selected cancel in folder browser 
+    dialog that an error was created as a result of the C:\ drive being selected by default.
+
+//////////////////////////////V0.1//////////////////////////////
+Updates
+•	Initial Release with base functionality.
+
+Known Issues
+•	Issue where when user selected Backup button and selected cancel in folder browser dialog 
+    that an error was created as a result of the C:\ drive being selected by default.
