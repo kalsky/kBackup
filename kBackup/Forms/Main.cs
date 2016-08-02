@@ -15,7 +15,6 @@ namespace kBackup.Forms
             InitializeComponent();
         }
 
-
         /// <summary>
         /// Validates provided credentials and domain, starts backup of articles and associated images.
         /// </summary>
