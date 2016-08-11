@@ -46,6 +46,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.fldrBackupLocation = new Syncfusion.Windows.Forms.FolderBrowser(this.components);
+            this.cmbPortal = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtDomain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
@@ -61,7 +62,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(45)))), ((int)(((byte)(59)))));
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(31, 263);
+            this.label5.Location = new System.Drawing.Point(31, 251);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 21);
             this.label5.TabIndex = 9;
@@ -73,7 +74,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(45)))), ((int)(((byte)(59)))));
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(59, 231);
+            this.label4.Location = new System.Drawing.Point(59, 218);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 21);
             this.label4.TabIndex = 8;
@@ -85,7 +86,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(45)))), ((int)(((byte)(59)))));
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(42, 199);
+            this.label3.Location = new System.Drawing.Point(42, 183);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 21);
             this.label3.TabIndex = 7;
@@ -94,19 +95,19 @@
             // txtDomain
             // 
             this.txtDomain.BackColor = System.Drawing.Color.White;
-            this.txtDomain.BeforeTouchSize = new System.Drawing.Size(232, 26);
+            this.txtDomain.BeforeTouchSize = new System.Drawing.Size(232, 29);
             this.txtDomain.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
             this.txtDomain.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtDomain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDomain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtDomain.FocusBorderColor = System.Drawing.Color.White;
-            this.txtDomain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDomain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDomain.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtDomain.Location = new System.Drawing.Point(117, 199);
+            this.txtDomain.Location = new System.Drawing.Point(117, 180);
             this.txtDomain.Metrocolor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtDomain.MinimumSize = new System.Drawing.Size(8, 4);
             this.txtDomain.Name = "txtDomain";
-            this.txtDomain.Size = new System.Drawing.Size(130, 26);
+            this.txtDomain.Size = new System.Drawing.Size(130, 29);
             this.txtDomain.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             this.txtDomain.TabIndex = 0;
             this.txtDomain.UseBorderColorOnFocus = true;
@@ -123,30 +124,30 @@
             this.btnBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBackup.ForeColor = System.Drawing.SystemColors.Control;
             this.btnBackup.IsBackStageButton = false;
-            this.btnBackup.Location = new System.Drawing.Point(253, 295);
+            this.btnBackup.Location = new System.Drawing.Point(253, 331);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(96, 36);
-            this.btnBackup.TabIndex = 3;
+            this.btnBackup.TabIndex = 4;
             this.btnBackup.Text = "Backup";
             this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
             // 
             // txtPassword
             // 
             this.txtPassword.BackColor = System.Drawing.Color.White;
-            this.txtPassword.BeforeTouchSize = new System.Drawing.Size(232, 26);
+            this.txtPassword.BeforeTouchSize = new System.Drawing.Size(232, 29);
             this.txtPassword.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
             this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.FocusBorderColor = System.Drawing.Color.White;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtPassword.Location = new System.Drawing.Point(117, 263);
+            this.txtPassword.Location = new System.Drawing.Point(117, 248);
             this.txtPassword.Metrocolor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtPassword.MinimumSize = new System.Drawing.Size(8, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(232, 26);
+            this.txtPassword.Size = new System.Drawing.Size(232, 29);
             this.txtPassword.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseBorderColorOnFocus = true;
@@ -154,19 +155,19 @@
             // txtEmail
             // 
             this.txtEmail.BackColor = System.Drawing.Color.White;
-            this.txtEmail.BeforeTouchSize = new System.Drawing.Size(232, 26);
+            this.txtEmail.BeforeTouchSize = new System.Drawing.Size(232, 29);
             this.txtEmail.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
             this.txtEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtEmail.FocusBorderColor = System.Drawing.Color.White;
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtEmail.Location = new System.Drawing.Point(117, 231);
+            this.txtEmail.Location = new System.Drawing.Point(117, 214);
             this.txtEmail.Metrocolor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
             this.txtEmail.MinimumSize = new System.Drawing.Size(8, 4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(232, 26);
+            this.txtEmail.Size = new System.Drawing.Size(232, 29);
             this.txtEmail.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             this.txtEmail.TabIndex = 1;
             this.txtEmail.UseBorderColorOnFocus = true;
@@ -177,7 +178,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(247, 202);
+            this.label1.Location = new System.Drawing.Point(247, 183);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 20);
             this.label1.TabIndex = 5;
@@ -250,6 +251,21 @@
             // 
             this.fldrBackupLocation.StartLocation = Syncfusion.Windows.Forms.FolderBrowserFolder.MyComputer;
             // 
+            // cmbPortal
+            // 
+            this.cmbPortal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbPortal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPortal.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.cmbPortal.FormattingEnabled = true;
+            this.cmbPortal.ItemHeight = 21;
+            this.cmbPortal.Items.AddRange(new object[] {
+            "Help Center",
+            "Web Portal"});
+            this.cmbPortal.Location = new System.Drawing.Point(117, 283);
+            this.cmbPortal.Name = "cmbPortal";
+            this.cmbPortal.Size = new System.Drawing.Size(232, 29);
+            this.cmbPortal.TabIndex = 3;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +282,7 @@
             captionImage1.Size = new System.Drawing.Size(26, 26);
             this.CaptionImages.Add(captionImage1);
             this.ClientSize = new System.Drawing.Size(418, 384);
+            this.Controls.Add(this.cmbPortal);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.label4);
@@ -277,12 +294,13 @@
             this.Controls.Add(this.txtPassword);
             this.DoubleBuffered = true;
             this.DropShadow = true;
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.ShowIcon = false;
             this.ShowMaximizeBox = false;
-            this.Text = "  ";
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtDomain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
@@ -311,6 +329,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private Syncfusion.Windows.Forms.FolderBrowser fldrBackupLocation;
+        private System.Windows.Forms.ComboBox cmbPortal;
     }
 }
 

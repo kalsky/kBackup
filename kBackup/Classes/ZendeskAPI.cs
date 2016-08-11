@@ -64,10 +64,21 @@ namespace kBackup.Classes
         /// True if no error occurs and all articles are retrieved successfully. 
         /// False if an exception occurs.
         /// </returns>
-        public static bool GetArticles()
+        public static bool GetArticles(ComboBox portal)
         {
-            //Create web request with appropriate Authorisation header.
-            var request = (HttpWebRequest)WebRequest.Create("https://" + Domain + ".zendesk.com/api/v2/help_center/articles.json" + Query + PageNumber + "&per_page=100");
+            //Sets the correct API string for the request.
+            string apiUrl = string.Empty;
+            if (portal.SelectedIndex == 0)
+            {
+                apiUrl = "https://" + Domain + ".zendesk.com/api/v2/help_center/articles.json" + Query + PageNumber + "&per_page=100";
+            }
+            else
+            {
+                apiUrl = "https://" + Domain + ".zendesk.com/api/v2/topics.json" + Query + PageNumber + "&per_page=100";
+            }
+
+            //Create web request with appropriate Authorisation header. .zendesk.com/api/v2/help_center/articles.json .zendesk.com/api/v2/help_center/en-us/articles.json
+            var request = (HttpWebRequest)WebRequest.Create(apiUrl);
             request.Headers["Authorization"] = GetAuthHeader(Email, Password);
             request.ContentType = "application/json";
             request.Accept = "application/json, application/xml, text/json, htmlContent/x-json, htmlContent/javascript, htmlContent/xml";
@@ -82,7 +93,7 @@ namespace kBackup.Classes
                 var tmp = rdr.ReadToEnd();
                 var articles = new JavaScriptSerializer().Deserialize<ArticlesCollection>(tmp);
                 var htmlContent = new StringBuilder();
-                
+
                 foreach (var article in articles.Articles)
                 {
                     //Write article heading and content into text file and save as html
@@ -116,7 +127,8 @@ namespace kBackup.Classes
                             {
                                 var str = url.Substring(url.LastIndexOf("/", StringComparison.Ordinal));
                                 var fullFileName = str.Split(Convert.ToChar("."));
-                                var fileName = fullFileName[0].Trim(Convert.ToChar("/"));
+                                var fileName = RemoveInvalidFilePathCharacters(fullFileName[0].Trim(Convert.ToChar("/")),"_");
+
                                 if (!DownloadImage(url, BackupFolder + "\\images\\" + ArticleId + "_" + fileName))
                                     continue;
 
@@ -142,7 +154,7 @@ namespace kBackup.Classes
                 if (articles.Next_Page != null)
                 {
                     PageNumber++;
-                    GetArticles();
+                    GetArticles(portal);
                 }
             }
 
@@ -150,16 +162,20 @@ namespace kBackup.Classes
             {
                 switch (((HttpWebResponse)ex.Response).StatusCode)
                 {
+                    case HttpStatusCode.Forbidden:
+                        MessageBox.Show(Form.ActiveForm, @"Uh oh, it looks like you do not have have access to the resources you are trying to back up. Please ensure you have Admin privileges on your Zendesk account and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+
                     case HttpStatusCode.BadRequest:
-                        MessageBox.Show(Form.ActiveForm, @"bad request");
+                        MessageBox.Show(Form.ActiveForm, @"bad request", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
 
                     case HttpStatusCode.NotFound:
-                        MessageBox.Show(Form.ActiveForm, @"The Zendesk domain you are requesting does not exist.");
+                        MessageBox.Show(Form.ActiveForm, @"The Zendesk domain you are requesting does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
 
                     case (HttpStatusCode)429:
-                        MessageBox.Show(Form.ActiveForm, @"You have hit the rate limit.");
+                        MessageBox.Show(Form.ActiveForm, @"You have hit the rate limit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                 }
             }
@@ -253,8 +269,14 @@ namespace kBackup.Classes
         /// </returns>
         private static bool DownloadImage(string uri, string filePathName)
         {
+            if (!uri.Contains("http://") || !uri.Contains("https://"))
+            {
+                uri = "https://" + Domain + ".zendesk.com" + uri;
+            }
+            Uri imgUri = new Uri(uri, UriKind.RelativeOrAbsolute);
+
             //Create web request with appropriate Authorisation header.
-            var request = (HttpWebRequest)WebRequest.Create(uri);
+            var request = (HttpWebRequest)WebRequest.Create(imgUri);
             request.Headers["Authorization"] = GetAuthHeader(Email, Password);
             HttpWebResponse response;
 
@@ -270,7 +292,7 @@ namespace kBackup.Classes
             // Check that the remote file was found and that the ContentType is correct.
             try
             {
-                if ((response.StatusCode == HttpStatusCode.OK || 
+                if ((response.StatusCode == HttpStatusCode.OK ||
                         response.StatusCode == HttpStatusCode.Moved ||
                         response.StatusCode == HttpStatusCode.Redirect) &&
                         response.ContentType.StartsWith("image", StringComparison.OrdinalIgnoreCase))
@@ -303,8 +325,9 @@ namespace kBackup.Classes
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 return false;
             }
             return true;
@@ -336,6 +359,19 @@ namespace kBackup.Classes
             return $"Basic {auth}";
         }
 
+        /// <summary>
+        /// Replaces any illegal characters in a file name with a chosen character.
+        /// </summary>
+        /// <param name="filename">The file name that should be cleaned.</param>
+        /// <param name="replaceChar">The character to replace illegal characters with.</param>
+        /// <returns></returns>
+        public static string RemoveInvalidFilePathCharacters(string filename, string replaceChar)
+        {
+            string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+            return r.Replace(filename, replaceChar);
+        }
+
         #region Deprecated
 
         /// <summary>
@@ -344,7 +380,7 @@ namespace kBackup.Classes
         /// <param name="email"></param>
         /// <returns></returns>
         /// 
-        public static bool GetUser(string email)
+        public static bool GetUser(string email, ComboBox portal)
         {
             var request = (HttpWebRequest)WebRequest.Create("https://" + Domain + ".zendesk.com/api/v2/users.json" + Query + PageNumber);
 
@@ -368,7 +404,7 @@ namespace kBackup.Classes
             if (users.NextPage != null)
             {
                 PageNumber++;
-                GetArticles();
+                GetArticles(portal);
             }
             return false;
         }
