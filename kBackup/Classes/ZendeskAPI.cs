@@ -325,9 +325,8 @@ namespace kBackup.Classes
                     return false;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.Message);
                 return false;
             }
             return true;
