@@ -1,4 +1,20 @@
 Release Notes 
+//////////////////////////////V0.5//////////////////////////////
+Updates
+•	Improved logic for retrieving content.
+•	Refactoring of code.
+•	Added portal type drop-down allowing users to select which type of portal they are backing up from.
+
+Resolved Bugs
+•	Resolved issue where URL structure of images was not recognized when images were being referenced 
+	using a query string.
+•	Resolved issue where kBackup was not usable for the Web Portal version of Zendesk's self service 
+	(Web Portal will soon be deprecated and replaced by Help Center see: 
+	https://support.zendesk.com/hc/en-us/articles/207323377) 
+•	Resolved issue where user cancelled or closed the folder browser dialog resulted in an empty 
+	directory path.
+
+	
 //////////////////////////////V0.4//////////////////////////////
 Updates
 •	Updated look and feel.

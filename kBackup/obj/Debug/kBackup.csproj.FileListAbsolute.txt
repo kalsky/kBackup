@@ -136,3 +136,5 @@ C:\Git\kBackup\kBackup\bin\Debug\kBackup.pdb
 C:\Git\kBackup\kBackup\obj\Debug\kBackup.Forms.Main.resources
 C:\Git\kBackup\kBackup\obj\Debug\kBackup.Properties.Resources.resources
 C:\Git\kBackup\kBackup\obj\Debug\kBackup.csproj.GenerateResource.Cache
+C:\Git\kBackup\kBackup\bin\Debug\Newtonsoft.Json.dll
+C:\Git\kBackup\kBackup\bin\Debug\Newtonsoft.Json.xml

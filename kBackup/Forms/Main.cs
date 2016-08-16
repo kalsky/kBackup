@@ -41,16 +41,22 @@ namespace kBackup.Forms
                 if (!ZendeskApi.ValidateUser()) return;
                 fldrBackupLocation.ShowDialog();
                 ZendeskApi.BackupFolder = fldrBackupLocation.DirectoryPath + @"Backup_" + DateTime.Now.ToString("yyyyMMdd-hhmmss");
-                if (ZendeskApi.BackupFolder.Trim() == string.Empty) return;
 
+                //Ensures that path is not empty string e.g. user cancels or X out of folder browser dialog.
+                if (fldrBackupLocation.DirectoryPath.Trim() == string.Empty)
+                {
+                    ZendeskApi.BackupFolder = string.Empty;
+                    return;
+                }
+            
                 //Retrieve all articles and associated images.
                 if (ZendeskApi.GetArticles(cmbPortal))
                 {
-                    MessageBox.Show(this, @"Backup completed to path: " + ZendeskApi.BackupFolder, "Backup Complete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, @"Backup completed to path: " + ZendeskApi.BackupFolder, @"Backup Complete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(this, @"The backup did not complete successfully.", "Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, @"The backup did not complete successfully.", @"Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

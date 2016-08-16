@@ -1,16 +1,16 @@
 Features
 The app currently has a number of features and may be expanded to include additional features if 
 the demand is there.
-•	The app will back up your help centers content to a specified folder as html pages in the 
-    format of [ArticleId].html. The app will first verify that the user exists in the given 
-	Zendesk domain. This is included for security reasons so only users who exist in the domain 
-	can back up the content.
-•	The app will work for any Zendesk help center even if you chose to use the Host Mapping 
-    feature as the original Zendesk sub-domain will still exist, regardless of what you have 
-	currently set as your hostname.
-•	Using the app to backup your help center content is completely safe and will not affect 
-    any existing data, it will simply take a copy of it so there is no possibility for data 
-	loss during the process.
+•	The app will back up your help center or web portal content to a specified folder as html 
+	pages in the format of [ArticleId].html. The app will first verify that the user exists in 
+	the given Zendesk domain. This is included for security reasons so only users who exist in 
+	the domain can back up the content.
+•	The app will work for any Zendesk help center or web portal even if you chose to use the 
+	Host Mapping feature as the original Zendesk sub-domain will still exist, regardless of 
+	what you have currently set as your hostname.
+•	Using the app to backup your help center or web portal content is completely safe and will 
+	not affect any existing data, it will simply take a copy of it so there is no possibility 
+	for data loss during the process.
 
 Requirements
 There are some requirements for using this app that need to be met in order for it to function 
@@ -34,5 +34,9 @@ above, then go ahead and follow the steps below:
 4.	Enter your Zendesk sub-domain into the Domain field
 5.	Enter your Zendesk users email into the Email field
 6.	Enter your Zendesk users’ password into the Password field
-7.	Select the Backup button
-8.	Browse for a folder where you would like to back up your content and select Ok 
+7.	Select Help Center or Web Portal depending on which you are using
+8.	Select the Backup button
+9.	Browse for a folder where you would like to back up your content and select Ok 
+
+The backup will then begin. This may take a few minutes so why not grab a cup of coffee or a 
+quick snack and you will receive a pop-up message from kBackup once your backup is complete.
