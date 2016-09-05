@@ -1,4 +1,10 @@
 Release Notes 
+//////////////////////////////V0.6//////////////////////////////
+Resolved Bugs
+•	Fixed issue where content could not be deserialized due to it's length.
+•	Fixed issue where maximum connections were reached which resulted in timeouts when images were downloaded.
+
+
 //////////////////////////////V0.5//////////////////////////////
 Updates
 •	Improved logic for retrieving content.
@@ -28,7 +34,7 @@ Resolved Bugs
 //////////////////////////////V0.3//////////////////////////////
 Updates
 •	Instead of using the backup folder chosen, a new folder will be created in the folder 
-    selected by the user in the format of Backup_[CurrentDateTime] to allow for multiple 
+	selected by the user in the format of Backup_[CurrentDateTime] to allow for multiple 
 	backups without much additional effort on the users part.
 •	Images within articles are now backed up to an images folder within the backup folder.
 •	Images are saved in the format of [ArticleId]_[ImageName].[FileType] e.g. 203792498_SNAG-0033.png
@@ -41,13 +47,13 @@ Known Issues
 //////////////////////////////V0.2//////////////////////////////
 Updates
 •	Added a log file which is created in the backup directory and will record the section Id 
-    and Article name of each backed up article.
+	and Article name of each backed up article.
 	
 Resolved Bugs
 •	Resolved user authentication issue which prevented users from retrieving all help articles 
-    they have access to.
+	they have access to.
 •	Resolved issue where when user selected Backup button and selected cancel in folder browser 
-    dialog that an error was created as a result of the C:\ drive being selected by default.
+	dialog that an error was created as a result of the C:\ drive being selected by default.
 
 //////////////////////////////V0.1//////////////////////////////
 Updates
@@ -55,4 +61,4 @@ Updates
 
 Known Issues
 •	Issue where when user selected Backup button and selected cancel in folder browser dialog 
-    that an error was created as a result of the C:\ drive being selected by default.
+	that an error was created as a result of the C:\ drive being selected by default.
