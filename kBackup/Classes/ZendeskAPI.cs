@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
@@ -137,28 +138,39 @@ namespace kBackup.Classes
             request.Accept = "application/json, application/xml, text/json, htmlContent/x-json, htmlContent/javascript, htmlContent/xml";
             request.Method = nameof(Method.GET);
             request.ContentLength = 0;
+            request.Timeout = 10000;
 
             try
             {
                 //Get web request response and seralize into json object
-                var resp = (HttpWebResponse)request.GetResponse();
-                var rdr = new StreamReader(resp.GetResponseStream());
-                var tmp = rdr.ReadToEnd();
-                var articles = new JavaScriptSerializer().Deserialize<ContentCollection>(tmp);
-                var htmlContent = new StringBuilder();
-
-                if (!SaveArticle(articles, htmlContent)) return false;
-
-                //Pagination of article api endpoint
-                if (articles.Next_Page != null)
+                using (var resp = (HttpWebResponse)request.GetResponse())
                 {
-                    PageNumber++;
-                    GetArticles(portal);
+                    var rdr = new StreamReader(resp.GetResponseStream());
+                    var tmp = rdr.ReadToEnd();
+                    var deserializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
+                    var articles = deserializer.Deserialize<ContentCollection>(tmp);
+                    var htmlContent = new StringBuilder();
+
+                    if (!SaveArticle(articles, htmlContent)) return false;
+
+                    //Pagination of article api endpoint
+                    if (articles.Next_Page != null)
+                    {
+                        Thread.Sleep(5000);
+                        PageNumber++;
+                        GetArticles(portal);
+                    }
                 }
             }
 
             catch (WebException ex)
             {
+                if (ex.Message == "The operation has timed out")
+                {
+                    Thread.Sleep(30000);
+                    GetArticles(portal);
+                }
+
                 switch (((HttpWebResponse)ex.Response).StatusCode)
                 {
                     case HttpStatusCode.Forbidden:
@@ -173,7 +185,7 @@ namespace kBackup.Classes
                         MessageBox.Show(Form.ActiveForm, @"The Zendesk domain you are requesting does not exist.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
 
-                    case (HttpStatusCode)429:
+                    case (HttpStatusCode).429:
                         MessageBox.Show(Form.ActiveForm, @"You have hit the rate limit.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                 }
@@ -297,7 +309,7 @@ namespace kBackup.Classes
                                      (article.html_url ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
                     }
 
-                    GetImageList(htmlContent, article);
+                    GetImageList(htmlContent, article, article.section_id);
                 }
                 catch (UnauthorizedAccessException)
                 {
@@ -317,7 +329,7 @@ namespace kBackup.Classes
         /// </summary>
         /// <param name="htmlContent">Html content of the article.</param>
         /// <param name="article">Article to check for img html elements.</param>
-        private static void GetImageList(StringBuilder htmlContent, Content article)
+        private static void GetImageList(StringBuilder htmlContent, Content article, string sectionId)
         {
             //Get list of images associated to the article
             var urls = GetImageUrls(htmlContent.ToString());
@@ -329,7 +341,7 @@ namespace kBackup.Classes
                     Directory.CreateDirectory(BackupFolder + "\\images");
                 }
 
-                StartImageDownload(urlList, article);
+                StartImageDownload(urlList, article, sectionId);
             }
         }
 
@@ -338,7 +350,7 @@ namespace kBackup.Classes
         /// </summary>
         /// <param name="urlList">List of img url's from article.</param>
         /// <param name="article">Article which contains the image that will be downloaded.</param>
-        private static void StartImageDownload(IEnumerable<string> urlList, Content article)
+        private static void StartImageDownload(IEnumerable<string> urlList, Content article, string sectionId)
         {
             //Download and save image to \images sub folder of backup root
             foreach (var url in urlList)
@@ -347,7 +359,7 @@ namespace kBackup.Classes
                 var fullFileName = str.Split(Convert.ToChar("."));
                 var fileName = RemoveInvalidFilePathCharacters(fullFileName[0].Trim(Convert.ToChar("/")), "_");
 
-                if (!DownloadImage(url, BackupFolder + "\\images\\" + ArticleId + "_" + fileName))
+                if (!DownloadImage(url, BackupFolder + "\\images\\" + ArticleId + "_" + fileName, sectionId))
                     continue;
 
                 //Log the backed up resource in the backup log
@@ -355,6 +367,7 @@ namespace kBackup.Classes
                 {
                     sw.WriteLine("image_" + (article.section_id ?? ArticleId) + ": " + url);
                 }
+                Thread.Sleep(1000);
             }
         }
 
@@ -366,9 +379,9 @@ namespace kBackup.Classes
         /// <returns>
         /// 
         /// </returns>
-        private static bool DownloadImage(string uri, string filePathName)
+        private static bool DownloadImage(string uri, string filePathName, string sectionId)
         {
-            if (!uri.Contains("http://") || !uri.Contains("https://"))
+            if (!uri.Contains("http://") && !uri.Contains("https://"))
             {
                 uri = "https://" + Domain + ".zendesk.com" + uri;
             }
@@ -377,55 +390,74 @@ namespace kBackup.Classes
             //Create web request with appropriate Authorisation header.
             var request = (HttpWebRequest)WebRequest.Create(imgUri);
             request.Headers["Authorization"] = GetAuthHeader(Email, Password);
+            request.Timeout = 10000;
             HttpWebResponse response;
 
             try
             {
-                response = (HttpWebResponse)request.GetResponse();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            // Check that the remote file was found and that the ContentType is correct.
-            try
-            {
-                if ((response.StatusCode == HttpStatusCode.OK ||
-                        response.StatusCode == HttpStatusCode.Moved ||
-                        response.StatusCode == HttpStatusCode.Redirect) &&
-                        response.ContentType.StartsWith("image", StringComparison.OrdinalIgnoreCase))
+                using (response = (HttpWebResponse)request.GetResponse())
                 {
-
-                    //Check that file does not already exist, if it does then incrememnt filename.
-                    var fileType = "." + response.ContentType.Split(Convert.ToChar("/"))[1];
-                    var fileIncrement = 0;
-                    while (File.Exists(filePathName + fileType))
+                    // Check that the remote file was found and that the ContentType is correct.
+                    try
                     {
-                        fileIncrement++;
-                        filePathName = filePathName + " - " + fileIncrement;
-                    }
-
-                    //Write web request response stream to file.
-                    using (var inputStream = response.GetResponseStream())
-                    using (Stream outputStream = File.OpenWrite(filePathName + fileType))
-                    {
-                        var buffer = new byte[4096];
-                        var bytesRead = 0;
-                        do
+                        if ((response.StatusCode == HttpStatusCode.OK ||
+                             response.StatusCode == HttpStatusCode.Moved ||
+                             response.StatusCode == HttpStatusCode.Redirect) &&
+                             response.ContentType.StartsWith("image", StringComparison.OrdinalIgnoreCase) ||
+                             response.ContentType.StartsWith("text", StringComparison.OrdinalIgnoreCase))
                         {
-                            if (inputStream != null) bytesRead = inputStream.Read(buffer, 0, buffer.Length);
-                            outputStream.Write(buffer, 0, bytesRead);
-                        } while (bytesRead != 0);
+
+                            //Check that file does not already exist, if it does then incrememnt filename.
+                            var fileType = "." + response.ContentType.Split(Convert.ToChar("/"))[1];
+
+                            if (fileType.Contains(Convert.ToChar(";")))
+                            {
+                                return false;
+                            }
+
+                            var fileIncrement = 0;
+                            while (File.Exists(filePathName + fileType))
+                            {
+                                fileIncrement++;
+                                filePathName = filePathName + " - " + fileIncrement;
+                            }
+
+                            //Write web request response stream to file.
+                            using (var inputStream = response.GetResponseStream())
+                            using (Stream outputStream = File.OpenWrite(filePathName + fileType))
+                            {
+                                var buffer = new byte[4096];
+                                var bytesRead = 0;
+                                do
+                                {
+                                    if (inputStream != null) bytesRead = inputStream.Read(buffer, 0, buffer.Length);
+                                    outputStream.Write(buffer, 0, bytesRead);
+                                } while (bytesRead != 0);
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return false;
                     }
                 }
-                else
-                {
-                    return false;
-                }
             }
-            catch (Exception)
+            catch (WebException ex)
             {
+                if (ex.Message == "The operation has timed out")
+                {
+                    //Log the backed up resource in the backup log
+                    //using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
+                    //{
+                    //    sw.WriteLine("Error: Connection Timeout for article_" + (sectionId ?? ArticleId) + ": " + (uri ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
+                    //}
+                    //Thread.Sleep(60000);
+                    //DownloadImage(uri, filePathName, sectionId);
+                }
                 return false;
             }
             return true;
