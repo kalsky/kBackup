@@ -156,7 +156,7 @@ namespace kBackup.Classes
                     //Pagination of article api endpoint
                     if (articles.Next_Page != null)
                     {
-                        Thread.Sleep(5000);
+                        //Thread.Sleep(5000);
                         PageNumber++;
                         GetArticles(portal);
                     }
@@ -222,7 +222,7 @@ namespace kBackup.Classes
                 var tmp = rdr.ReadToEnd();
 
                 //Check that the user credentials provided matched a valid user account.
-                if (tmp.Contains("Anonymous user") && tmp.Contains("invalid@example.com"))
+                if (tmp.Contains("Anonymous user") || tmp.Contains("invalid@example.com"))
                 {
                     MessageBox.Show(Form.ActiveForm, @"The username or password you have entered is incorrect, please try again.");
                     return false;
@@ -334,15 +334,13 @@ namespace kBackup.Classes
             //Get list of images associated to the article
             var urls = GetImageUrls(htmlContent.ToString());
             var urlList = urls as IList<string> ?? urls.ToList();
-            if (urlList.Any())
+            if (!urlList.Any()) return;
+            if (!Directory.Exists(BackupFolder + "\\images"))
             {
-                if (!Directory.Exists(BackupFolder + "\\images"))
-                {
-                    Directory.CreateDirectory(BackupFolder + "\\images");
-                }
-
-                StartImageDownload(urlList, article, sectionId);
+                Directory.CreateDirectory(BackupFolder + "\\images");
             }
+
+            StartImageDownload(urlList, article, sectionId);
         }
 
         /// <summary>
@@ -367,7 +365,7 @@ namespace kBackup.Classes
                 {
                     sw.WriteLine("image_" + (article.section_id ?? ArticleId) + ": " + url);
                 }
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
             }
         }
 
@@ -381,10 +379,16 @@ namespace kBackup.Classes
         /// </returns>
         private static bool DownloadImage(string uri, string filePathName, string sectionId)
         {
-            if (!uri.Contains("http://") && !uri.Contains("https://"))
+            if (!uri.Contains("http://") && !uri.Contains("https://") && !uri.Contains("//") && !uri.Contains("////"))
             {
                 uri = "https://" + Domain + ".zendesk.com" + uri;
             }
+
+            if (uri.Contains("////"))
+            {
+                uri = uri.Replace("////", "http://");
+            }
+
             var imgUri = new Uri(uri, UriKind.RelativeOrAbsolute);
 
             //Create web request with appropriate Authorisation header.
