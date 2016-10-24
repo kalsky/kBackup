@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -305,8 +307,7 @@ namespace kBackup.Classes
                     //Log the backed up resource in the backup log
                     using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
                     {
-                        sw.WriteLine("article_" + (article.section_id ?? ArticleId) + ": " +
-                                     (article.html_url ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
+                        sw.WriteLine("article_" + (article.section_id ?? ArticleId) + ": " + (article.html_url ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
                     }
 
                     GetImageList(htmlContent, article, article.section_id);
@@ -379,90 +380,107 @@ namespace kBackup.Classes
         /// </returns>
         private static bool DownloadImage(string uri, string filePathName, string sectionId)
         {
-            if (!uri.Contains("http://") && !uri.Contains("https://") && !uri.Contains("//") && !uri.Contains("////"))
+            if (uri.Contains("base64"))
             {
-                uri = "https://" + Domain + ".zendesk.com" + uri;
-            }
+                var fp = filePathName.Substring(0, filePathName.LastIndexOf(Convert.ToChar(@"\")) + 20);
+                var encString = uri.Split(Convert.ToChar(","));
+                byte[] decodedString = Convert.FromBase64String(encString[1]);
 
-            if (uri.Contains("////"))
-            {
-                uri = uri.Replace("////", "http://");
-            }
-
-            var imgUri = new Uri(uri, UriKind.RelativeOrAbsolute);
-
-            //Create web request with appropriate Authorisation header.
-            var request = (HttpWebRequest)WebRequest.Create(imgUri);
-            request.Headers["Authorization"] = GetAuthHeader(Email, Password);
-            request.Timeout = 10000;
-            HttpWebResponse response;
-
-            try
-            {
-                using (response = (HttpWebResponse)request.GetResponse())
+                using (var stream = new MemoryStream(decodedString, 0, decodedString.Length))
                 {
-                    // Check that the remote file was found and that the ContentType is correct.
-                    try
+                    Image image = Image.FromStream(stream);
+                    //fp = RemoveInvalidFilePathCharacters(fp, "_");
+                    image.Save(fp + ".png", ImageFormat.Png);
+                }
+            }
+            else
+            {
+                if (!uri.Contains("http://") && !uri.Contains("https://") && !uri.Contains("//") && !uri.Contains("////"))
+                {
+                    uri = "https://" + Domain + ".zendesk.com" + uri;
+                }
+
+                if (uri.Contains("////"))
+                {
+                    uri = uri.Replace("////", "http://");
+                }
+
+                var imgUri = new Uri(uri, UriKind.RelativeOrAbsolute);
+
+                //Create web request with appropriate Authorisation header.
+                var request = (HttpWebRequest)WebRequest.Create(imgUri);
+                request.Headers["Authorization"] = GetAuthHeader(Email, Password);
+                request.Timeout = 10000;
+
+                try
+                {
+                    HttpWebResponse response;
+                    using (response = (HttpWebResponse)request.GetResponse())
                     {
-                        if ((response.StatusCode == HttpStatusCode.OK ||
-                             response.StatusCode == HttpStatusCode.Moved ||
-                             response.StatusCode == HttpStatusCode.Redirect) &&
-                             response.ContentType.StartsWith("image", StringComparison.OrdinalIgnoreCase) ||
-                             response.ContentType.StartsWith("text", StringComparison.OrdinalIgnoreCase))
+                        // Check that the remote file was found and that the ContentType is correct.
+                        try
                         {
+                            if ((response.StatusCode == HttpStatusCode.OK ||
+                                 response.StatusCode == HttpStatusCode.Moved ||
+                                 response.StatusCode == HttpStatusCode.Redirect) &&
+                                 response.ContentType.StartsWith("image", StringComparison.OrdinalIgnoreCase) ||
+                                 response.ContentType.StartsWith("text", StringComparison.OrdinalIgnoreCase))
+                            {
 
-                            //Check that file does not already exist, if it does then incrememnt filename.
-                            var fileType = "." + response.ContentType.Split(Convert.ToChar("/"))[1];
+                                //Check that file does not already exist, if it does then incrememnt filename.
+                                var fileType = "." + response.ContentType.Split(Convert.ToChar("/"))[1];
 
-                            if (fileType.Contains(Convert.ToChar(";")))
+                                if (fileType.Contains(Convert.ToChar(";")))
+                                {
+                                    return false;
+                                }
+
+                                var fileIncrement = 0;
+                                while (File.Exists(filePathName + fileType))
+                                {
+                                    fileIncrement++;
+                                    filePathName = filePathName + " - " + fileIncrement;
+                                }
+
+                                //Write web request response stream to file.
+                                using (var inputStream = response.GetResponseStream())
+                                using (Stream outputStream = File.OpenWrite(filePathName + fileType))
+                                {
+                                    var buffer = new byte[4096];
+                                    var bytesRead = 0;
+                                    do
+                                    {
+                                        if (inputStream != null) bytesRead = inputStream.Read(buffer, 0, buffer.Length);
+                                        outputStream.Write(buffer, 0, bytesRead);
+                                    } while (bytesRead != 0);
+                                }
+                            }
+                            else
                             {
                                 return false;
                             }
-
-                            var fileIncrement = 0;
-                            while (File.Exists(filePathName + fileType))
-                            {
-                                fileIncrement++;
-                                filePathName = filePathName + " - " + fileIncrement;
-                            }
-
-                            //Write web request response stream to file.
-                            using (var inputStream = response.GetResponseStream())
-                            using (Stream outputStream = File.OpenWrite(filePathName + fileType))
-                            {
-                                var buffer = new byte[4096];
-                                var bytesRead = 0;
-                                do
-                                {
-                                    if (inputStream != null) bytesRead = inputStream.Read(buffer, 0, buffer.Length);
-                                    outputStream.Write(buffer, 0, bytesRead);
-                                } while (bytesRead != 0);
-                            }
                         }
-                        else
+                        catch (Exception)
                         {
                             return false;
                         }
                     }
-                    catch (Exception)
-                    {
-                        return false;
-                    }
                 }
-            }
-            catch (WebException ex)
-            {
-                if (ex.Message == "The operation has timed out")
+                catch (WebException ex)
                 {
-                    //Log the backed up resource in the backup log
-                    //using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
-                    //{
-                    //    sw.WriteLine("Error: Connection Timeout for article_" + (sectionId ?? ArticleId) + ": " + (uri ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
-                    //}
-                    //Thread.Sleep(60000);
-                    //DownloadImage(uri, filePathName, sectionId);
+                    if (ex.Message == "The operation has timed out")
+                    {
+                        //Log the backed up resource in the backup log
+                        //using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
+                        //{
+                        //    sw.WriteLine("Error: Connection Timeout for article_" + (sectionId ?? ArticleId) + ": " + (uri ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
+                        //}
+                        //Thread.Sleep(60000);
+                        //DownloadImage(uri, filePathName, sectionId);
+                    }
+                    return false;
                 }
-                return false;
+                return true;
             }
             return true;
         }

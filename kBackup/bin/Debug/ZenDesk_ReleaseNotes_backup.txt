@@ -1,0 +1,55 @@
+V0.5
+
+Updates
+
+Improved logic for retrieving content.
+Refactoring of code.
+Added portal type drop-down allowing users to select which type of portal they are backing up from.
+Resolved Bugs
+
+Resolved issue where URL structure of images was not recognized when images were being referenced 
+using a query string.
+Resolved issue where kBackup was not usable for the Web Portal version of Zendesk's self service 
+(Web Portal will soon be deprecated and replaced by Help Center see: 
+https://support.zendesk.com/hc/en-us/articles/207323377)
+Resolved issue where user cancelled or closed the folder browser dialog resulted in an empty 
+directory path.
+V0.4
+
+Updates
+
+Updated look and feel.
+Backend updates to clean up code and add comments.
+Added Readme.txt and Release Notes.txt to package.
+Resolved Bugs
+
+Resolved issue where duplicate entries were made for articles in the BackupLog.txt file.
+V0.3
+
+Updates
+
+Instead of using the backup folder chosen, a new folder will be created in the folder selected by the user in the format of Backup_[CurrentDateTime] to allow for multiple backups without much additional effort on the user’s part.
+Images within articles are now backed up to an images folder within the backup folder.
+Images are saved in the format of [ArticleId]_[ImageName].[FileType] e.g. 203792498_SNAG-0033.png
+Backed up images will also be listed in the BackupLog.txt file.
+
+Known Issues
+
+Issue with duplicate entries of backed up articles in BackupLog.txt file.
+V0.2
+
+Updates
+
+Added a log file which is created in the backup directory and will record the section Id and Article name of each backed up article.
+Resolved Bugs
+
+Resolved user authentication issue which prevented users from retrieving all help articles they have access to.
+Resolved issue where when user selected Backup button and selected cancel in folder browser dialog that an error was created as a result of the C:\ drive being selected by default.
+V0.1
+
+Updates
+
+Initial Release with base functionality.
+Known Issues
+
+Issue where when user selected Backup button and selected cancel in folder browser dialog that an error was created as a result of the C:\ drive being selected by default.

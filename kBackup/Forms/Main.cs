@@ -38,7 +38,7 @@ namespace kBackup.Forms
             if (ZendeskApi.Domain.Trim() != string.Empty)
             {
                 //Validate the users credentials.
-                //if (!ZendeskApi.ValidateUser()) return;
+                if (!ZendeskApi.ValidateUser()) return;
                 fldrBackupLocation.ShowDialog();
                 ZendeskApi.BackupFolder = fldrBackupLocation.DirectoryPath + @"Backup_" + DateTime.Now.ToString("yyyyMMdd-hhmmss");
 

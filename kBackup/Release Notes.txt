@@ -1,4 +1,10 @@
 Release Notes 
+//////////////////////////////V0.7//////////////////////////////
+Resolved Bugs
+•	Fixed issue where images stored as a base64 encoded string were not being backed up.
+
+
+Release Notes 
 //////////////////////////////V0.6//////////////////////////////
 Resolved Bugs
 •	Fixed issue where content could not be deserialized due to it's length.

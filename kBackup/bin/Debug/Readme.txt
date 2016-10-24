@@ -17,12 +17,12 @@ There are some requirements for using this app that need to be met in order for 
 correctly. I've included these requirements below:
 •	This program is only compatible with Windows PC's and Laptops only.
 •	Your user must have ‘Password Access’ to the API enabled in Zendesk. You can do this by 
-    going to Settings > Channels > API and checking the ‘Password Access’ check box.
+	going to Settings > Channels > API and checking the ‘Password Access’ check box.
 •	The app requires Microsoft .Net Framework 4.6 to be installed on the Windows PC or Laptop 
-    where it’s being run, this version of the .Net Framework can be downloaded here 
+	where it’s being run, this version of the .Net Framework can be downloaded here 
 	(https://www.microsoft.com/en-ie/download/details.aspx?id=48130)
 •	I recommend running the app as Administrator to avoid any permission issues backing up to 
-    your selected backup location. This can be done by right-clicking the kBackup.exe and 
+	your selected backup location. This can be done by right-clicking the kBackup.exe and 
 	selecting ‘Run as administrator’.
 
 Getting Started
