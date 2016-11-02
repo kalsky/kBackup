@@ -22,5 +22,16 @@ namespace kBackup.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Windows.Forms.PictureBox pbAvatar {
+            get {
+                return ((global::System.Windows.Forms.PictureBox)(this["pbAvatar"]));
+            }
+            set {
+                this["pbAvatar"] = value;
+            }
+        }
     }
 }

@@ -1,32 +1,60 @@
 
 Unhandled Exception:
-System.Exception: Unknown Error [GDI+ status: NotTrueTypeFont]
-  at System.Drawing.GDIPlus.CheckStatus (Status status) <0x1aef648ef90 + 0x00b52> in <filename unknown>:0 
-  at System.Drawing.Font.FromLogFont (System.Object lf, IntPtr hdc) <0x1aef655ad60 + 0x000b6> in <filename unknown>:0 
-  at System.Drawing.Font.FromHfont (IntPtr hfont) <0x1aef655a9a0 + 0x00214> in <filename unknown>:0 
-  at Syncfusion.Windows.Forms.MetroForm.get_CaptionFont () <0x1aef6558e30 + 0x00063> in <filename unknown>:0 
-  at (wrapper remoting-invoke-with-check) Syncfusion.Windows.Forms.MetroForm:get_CaptionFont ()
-  at Syncfusion.Windows.Forms.MetroForm+FrameLayoutInfo.PerformLayout (Int32 width, Int32 height) <0x1aef65573e0 + 0x003e1> in <filename unknown>:0 
-  at Syncfusion.Windows.Forms.MetroForm.get_FrameLayout () <0x1aef6556fc0 + 0x000e0> in <filename unknown>:0 
-  at Syncfusion.Windows.Forms.MetroForm.SetClientSizeCore (Int32 x, Int32 y) <0x1aef6556db0 + 0x0005b> in <filename unknown>:0 
-  at System.Windows.Forms.Control.set_ClientSize (Size value) <0x1aef6556d50 + 0x00022> in <filename unknown>:0 
-  at System.Windows.Forms.Form.set_ClientSize (Size value) <0x1aef6556ce0 + 0x0002e> in <filename unknown>:0 
-  at kBackup.Forms.Main.InitializeComponent () <0x1aef64e65a0 + 0x03511> in <filename unknown>:0 
-  at kBackup.Forms.Main..ctor () <0x1aef6480060 + 0x00039> in <filename unknown>:0 
-  at (wrapper remoting-invoke-with-check) kBackup.Forms.Main:.ctor ()
+System.Exception: Unknown Error [GDI+ status: NotTrueTypeFont]
+
+  at System.Drawing.GDIPlus.CheckStatus (Status status) <0x1aef648ef90 + 0x00b52> in <filename unknown>:0 
+
+  at System.Drawing.Font.FromLogFont (System.Object lf, IntPtr hdc) <0x1aef655ad60 + 0x000b6> in <filename unknown>:0 
+
+  at System.Drawing.Font.FromHfont (IntPtr hfont) <0x1aef655a9a0 + 0x00214> in <filename unknown>:0 
+
+  at Syncfusion.Windows.Forms.MetroForm.get_CaptionFont () <0x1aef6558e30 + 0x00063> in <filename unknown>:0 
+
+  at (wrapper remoting-invoke-with-check) Syncfusion.Windows.Forms.MetroForm:get_CaptionFont ()
+
+  at Syncfusion.Windows.Forms.MetroForm+FrameLayoutInfo.PerformLayout (Int32 width, Int32 height) <0x1aef65573e0 + 0x003e1> in <filename unknown>:0 
+
+  at Syncfusion.Windows.Forms.MetroForm.get_FrameLayout () <0x1aef6556fc0 + 0x000e0> in <filename unknown>:0 
+
+  at Syncfusion.Windows.Forms.MetroForm.SetClientSizeCore (Int32 x, Int32 y) <0x1aef6556db0 + 0x0005b> in <filename unknown>:0 
+
+  at System.Windows.Forms.Control.set_ClientSize (Size value) <0x1aef6556d50 + 0x00022> in <filename unknown>:0 
+
+  at System.Windows.Forms.Form.set_ClientSize (Size value) <0x1aef6556ce0 + 0x0002e> in <filename unknown>:0 
+
+  at kBackup.Forms.Main.InitializeComponent () <0x1aef64e65a0 + 0x03511> in <filename unknown>:0 
+
+  at kBackup.Forms.Main..ctor () <0x1aef6480060 + 0x00039> in <filename unknown>:0 
+
+  at (wrapper remoting-invoke-with-check) kBackup.Forms.Main:.ctor ()
+
   at kBackup.Classes.Program.Main () <0x1aef6460f70 + 0x00051> in <filename unknown>:0 
-[ERROR] FATAL UNHANDLED EXCEPTION: System.Exception: Unknown Error [GDI+ status: NotTrueTypeFont]
-  at System.Drawing.GDIPlus.CheckStatus (Status status) <0x1aef648ef90 + 0x00b52> in <filename unknown>:0 
-  at System.Drawing.Font.FromLogFont (System.Object lf, IntPtr hdc) <0x1aef655ad60 + 0x000b6> in <filename unknown>:0 
-  at System.Drawing.Font.FromHfont (IntPtr hfont) <0x1aef655a9a0 + 0x00214> in <filename unknown>:0 
-  at Syncfusion.Windows.Forms.MetroForm.get_CaptionFont () <0x1aef6558e30 + 0x00063> in <filename unknown>:0 
-  at (wrapper remoting-invoke-with-check) Syncfusion.Windows.Forms.MetroForm:get_CaptionFont ()
-  at Syncfusion.Windows.Forms.MetroForm+FrameLayoutInfo.PerformLayout (Int32 width, Int32 height) <0x1aef65573e0 + 0x003e1> in <filename unknown>:0 
-  at Syncfusion.Windows.Forms.MetroForm.get_FrameLayout () <0x1aef6556fc0 + 0x000e0> in <filename unknown>:0 
-  at Syncfusion.Windows.Forms.MetroForm.SetClientSizeCore (Int32 x, Int32 y) <0x1aef6556db0 + 0x0005b> in <filename unknown>:0 
-  at System.Windows.Forms.Control.set_ClientSize (Size value) <0x1aef6556d50 + 0x00022> in <filename unknown>:0 
-  at System.Windows.Forms.Form.set_ClientSize (Size value) <0x1aef6556ce0 + 0x0002e> in <filename unknown>:0 
-  at kBackup.Forms.Main.InitializeComponent () <0x1aef64e65a0 + 0x03511> in <filename unknown>:0 
-  at kBackup.Forms.Main..ctor () <0x1aef6480060 + 0x00039> in <filename unknown>:0 
-  at (wrapper remoting-invoke-with-check) kBackup.Forms.Main:.ctor ()
+[ERROR] FATAL UNHANDLED EXCEPTION: System.Exception: Unknown Error [GDI+ status: NotTrueTypeFont]
+
+  at System.Drawing.GDIPlus.CheckStatus (Status status) <0x1aef648ef90 + 0x00b52> in <filename unknown>:0 
+
+  at System.Drawing.Font.FromLogFont (System.Object lf, IntPtr hdc) <0x1aef655ad60 + 0x000b6> in <filename unknown>:0 
+
+  at System.Drawing.Font.FromHfont (IntPtr hfont) <0x1aef655a9a0 + 0x00214> in <filename unknown>:0 
+
+  at Syncfusion.Windows.Forms.MetroForm.get_CaptionFont () <0x1aef6558e30 + 0x00063> in <filename unknown>:0 
+
+  at (wrapper remoting-invoke-with-check) Syncfusion.Windows.Forms.MetroForm:get_CaptionFont ()
+
+  at Syncfusion.Windows.Forms.MetroForm+FrameLayoutInfo.PerformLayout (Int32 width, Int32 height) <0x1aef65573e0 + 0x003e1> in <filename unknown>:0 
+
+  at Syncfusion.Windows.Forms.MetroForm.get_FrameLayout () <0x1aef6556fc0 + 0x000e0> in <filename unknown>:0 
+
+  at Syncfusion.Windows.Forms.MetroForm.SetClientSizeCore (Int32 x, Int32 y) <0x1aef6556db0 + 0x0005b> in <filename unknown>:0 
+
+  at System.Windows.Forms.Control.set_ClientSize (Size value) <0x1aef6556d50 + 0x00022> in <filename unknown>:0 
+
+  at System.Windows.Forms.Form.set_ClientSize (Size value) <0x1aef6556ce0 + 0x0002e> in <filename unknown>:0 
+
+  at kBackup.Forms.Main.InitializeComponent () <0x1aef64e65a0 + 0x03511> in <filename unknown>:0 
+
+  at kBackup.Forms.Main..ctor () <0x1aef6480060 + 0x00039> in <filename unknown>:0 
+
+  at (wrapper remoting-invoke-with-check) kBackup.Forms.Main:.ctor ()
+
   at kBackup.Classes.Program.Main () <0x1aef6460f70 + 0x00051> in <filename unknown>:0 

@@ -55,16 +55,37 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <StartupObject>kBackup.Classes.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AlphaBlendTextBox">
       <HintPath>..\..\..\AlphaBlendTextBox.dll</HintPath>
     </Reference>
+    <Reference Include="Bunifu_UI_v1.5">
+      <HintPath>D:\Users\Felix\Desktop\Bunifu_UI_v1.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Quartz, Version=2.4.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.Gauge.Windows, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Grid.Base, Version=14.1460.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Grid.Windows, Version=14.1460.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Shared.Base, Version=14.1460.0.41, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
@@ -87,8 +108,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Crawler.cs" />
+    <Compile Include="Classes\Core.cs" />
+    <Compile Include="Classes\FileSystem.cs" />
+    <Compile Include="Classes\Logging.cs" />
+    <Compile Include="Classes\Mailer.cs" />
+    <Compile Include="Classes\Requests.cs" />
+    <Compile Include="Classes\Scheduler.cs" />
     <Compile Include="Classes\Visual.cs" />
+    <Compile Include="Classes\ZApiModel.cs" />
+    <Compile Include="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +131,9 @@
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\ZendeskAPI.cs" />
+    <EmbeddedResource Include="Forms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,8 +147,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="bin\Debug\kBackup.exe.config" />
+    <None Include="Properties\job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -130,8 +169,27 @@
     <EmbeddedResource Include="Resources\downArrow.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Settings - 09.png" />
+    <None Include="Resources\Minimize-WF1.png" />
+    <None Include="Resources\Close WF1111.png" />
+    <None Include="Resources\Close WF111.png" />
+    <None Include="Resources\Close WF11.png" />
+    <None Include="Resources\Close WF1.png" />
+    <None Include="Resources\Maximize4-WF.png" />
+    <None Include="Resources\Minimize-WF.png" />
+    <None Include="Resources\Close WF.png" />
+    <None Include="Resources\Team-01-WF.png" />
+    <None Include="Resources\Export-WF.png" />
+    <None Include="Resources\Paper.png" />
+    <None Include="Resources\Tile-04-WF.png" />
+    <None Include="Resources\Menu_01.png" />
+    <None Include="Resources\Tiles-01.png" />
+    <None Include="Resources\Exit-01-WF.png" />
     <None Include="Resources\app-background.png" />
     <None Include="Resources\logo.png" />
+    <None Include="bin\Debug2.png.png" />
+    <Content Include="bin\Debug\kBackup.exe" />
+    <Content Include="bin\Debug\kBackup.pdb" />
     <Content Include="Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -152,6 +210,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\data\" />
+    <Folder Include="bin\Debug\user\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />

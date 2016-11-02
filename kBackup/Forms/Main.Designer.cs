@@ -29,308 +29,470 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             Syncfusion.Windows.Forms.CaptionImage captionImage1 = new Syncfusion.Windows.Forms.CaptionImage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDomain = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.btnBackup = new Syncfusion.Windows.Forms.ButtonAdv();
-            this.txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.txtEmail = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnlMain = new Syncfusion.Windows.Forms.Tools.GradientPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.fldrBackupLocation = new Syncfusion.Windows.Forms.FolderBrowser(this.components);
-            this.cmbPortal = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDomain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
-            this.pnlMain.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.pnlSideMenu = new System.Windows.Forms.Panel();
+            this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.pbProfile = new System.Windows.Forms.PictureBox();
+            this.btnMigrate = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnLogout = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnHome = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnCommunity = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnHelpCenter = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.pnlMain = new System.Windows.Forms.Panel();
+            this.animMenu = new BunifuAnimatorNS.BunifuTransition(this.components);
+            this.bunifuFlatButton3 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.bunifuFlatButton10 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.bunifuFlatButton11 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.pnlTopBar = new System.Windows.Forms.Panel();
+            this.pnlSideMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
+            this.pnlTopBar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(45)))), ((int)(((byte)(59)))));
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(31, 251);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 21);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Password";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(45)))), ((int)(((byte)(59)))));
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(59, 218);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 21);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Email";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(45)))), ((int)(((byte)(59)))));
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(42, 183);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 21);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Domain";
-            // 
-            // txtDomain
-            // 
-            this.txtDomain.BackColor = System.Drawing.Color.White;
-            this.txtDomain.BeforeTouchSize = new System.Drawing.Size(232, 29);
-            this.txtDomain.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
-            this.txtDomain.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtDomain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDomain.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDomain.FocusBorderColor = System.Drawing.Color.White;
-            this.txtDomain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDomain.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtDomain.Location = new System.Drawing.Point(117, 180);
-            this.txtDomain.Metrocolor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtDomain.MinimumSize = new System.Drawing.Size(8, 4);
-            this.txtDomain.Name = "txtDomain";
-            this.txtDomain.Size = new System.Drawing.Size(130, 29);
-            this.txtDomain.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.txtDomain.TabIndex = 0;
-            this.txtDomain.UseBorderColorOnFocus = true;
-            // 
-            // btnBackup
-            // 
-            this.btnBackup.BackColor = System.Drawing.Color.Transparent;
-            this.btnBackup.BeforeTouchSize = new System.Drawing.Size(96, 36);
-            this.btnBackup.BorderStyleAdv = Syncfusion.Windows.Forms.ButtonAdvBorderStyle.Flat;
-            this.btnBackup.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnBackup.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnBackup.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackup.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnBackup.IsBackStageButton = false;
-            this.btnBackup.Location = new System.Drawing.Point(253, 331);
-            this.btnBackup.Name = "btnBackup";
-            this.btnBackup.Size = new System.Drawing.Size(96, 36);
-            this.btnBackup.TabIndex = 4;
-            this.btnBackup.Text = "Backup";
-            this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.BackColor = System.Drawing.Color.White;
-            this.txtPassword.BeforeTouchSize = new System.Drawing.Size(232, 29);
-            this.txtPassword.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
-            this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPassword.FocusBorderColor = System.Drawing.Color.White;
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtPassword.Location = new System.Drawing.Point(117, 248);
-            this.txtPassword.Metrocolor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtPassword.MinimumSize = new System.Drawing.Size(8, 4);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(232, 29);
-            this.txtPassword.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.txtPassword.TabIndex = 2;
-            this.txtPassword.UseBorderColorOnFocus = true;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.BackColor = System.Drawing.Color.White;
-            this.txtEmail.BeforeTouchSize = new System.Drawing.Size(232, 29);
-            this.txtEmail.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
-            this.txtEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtEmail.FocusBorderColor = System.Drawing.Color.White;
-            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtEmail.Location = new System.Drawing.Point(117, 214);
-            this.txtEmail.Metrocolor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(211)))), ((int)(((byte)(212)))));
-            this.txtEmail.MinimumSize = new System.Drawing.Size(8, 4);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(232, 29);
-            this.txtEmail.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
-            this.txtEmail.TabIndex = 1;
-            this.txtEmail.UseBorderColorOnFocus = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(247, 183);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = ".zendesk.com";
-            // 
-            // pnlMain
-            // 
-            this.pnlMain.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.pnlMain.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
-            this.pnlMain.BorderColor = System.Drawing.Color.Transparent;
-            this.pnlMain.BorderSingle = System.Windows.Forms.ButtonBorderStyle.None;
-            this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pnlMain.Controls.Add(this.panel2);
-            this.pnlMain.Controls.Add(this.label2);
-            this.pnlMain.Controls.Add(this.panel1);
-            this.pnlMain.Controls.Add(this.pictureBox2);
-            this.pnlMain.Location = new System.Drawing.Point(961, 0);
-            this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(941, 683);
-            this.pnlMain.TabIndex = 6;
-            this.pnlMain.Visible = false;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(184, 683);
-            this.panel2.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(-1, -1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(913, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 50);
-            this.label2.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(240, 59);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(698, 621);
-            this.panel1.TabIndex = 1;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Location = new System.Drawing.Point(857, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
             // 
             // fldrBackupLocation
             // 
             this.fldrBackupLocation.StartLocation = Syncfusion.Windows.Forms.FolderBrowserFolder.MyComputer;
             // 
-            // cmbPortal
+            // bunifuDragControl1
             // 
-            this.cmbPortal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPortal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbPortal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPortal.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.cmbPortal.FormattingEnabled = true;
-            this.cmbPortal.ItemHeight = 21;
-            this.cmbPortal.Items.AddRange(new object[] {
-            "Help Center",
-            "Web Portal"});
-            this.cmbPortal.Location = new System.Drawing.Point(117, 283);
-            this.cmbPortal.Name = "cmbPortal";
-            this.cmbPortal.Size = new System.Drawing.Size(232, 29);
-            this.cmbPortal.TabIndex = 3;
+            this.bunifuDragControl1.Fixed = true;
+            this.bunifuDragControl1.Horizontal = true;
+            this.bunifuDragControl1.TargetControl = this.pnlTopBar;
+            this.bunifuDragControl1.Vertical = true;
+            // 
+            // pnlSideMenu
+            // 
+            this.pnlSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.pnlSideMenu.Controls.Add(this.bunifuFlatButton1);
+            this.pnlSideMenu.Controls.Add(this.pbProfile);
+            this.pnlSideMenu.Controls.Add(this.btnMigrate);
+            this.pnlSideMenu.Controls.Add(this.btnLogout);
+            this.pnlSideMenu.Controls.Add(this.btnHome);
+            this.pnlSideMenu.Controls.Add(this.btnCommunity);
+            this.pnlSideMenu.Controls.Add(this.btnHelpCenter);
+            this.animMenu.SetDecoration(this.pnlSideMenu, BunifuAnimatorNS.DecorationType.None);
+            this.pnlSideMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSideMenu.Location = new System.Drawing.Point(0, 39);
+            this.pnlSideMenu.Name = "pnlSideMenu";
+            this.pnlSideMenu.Size = new System.Drawing.Size(50, 564);
+            this.pnlSideMenu.TabIndex = 28;
+            // 
+            // bunifuFlatButton1
+            // 
+            this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton1.BorderRadius = 0;
+            this.bunifuFlatButton1.ButtonText = "Settings";
+            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.bunifuFlatButton1, BunifuAnimatorNS.DecorationType.None);
+            this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton1.Iconimage = global::kBackup.Properties.Resources.Settings___09;
+            this.bunifuFlatButton1.Iconimage_right = null;
+            this.bunifuFlatButton1.Iconimage_right_Selected = null;
+            this.bunifuFlatButton1.Iconimage_Selected = null;
+            this.bunifuFlatButton1.IconRightVisible = true;
+            this.bunifuFlatButton1.IconRightZoom = 0D;
+            this.bunifuFlatButton1.IconVisible = true;
+            this.bunifuFlatButton1.IconZoom = 90D;
+            this.bunifuFlatButton1.IsTab = false;
+            this.bunifuFlatButton1.Location = new System.Drawing.Point(1, 466);
+            this.bunifuFlatButton1.Name = "bunifuFlatButton1";
+            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.White;
+            this.bunifuFlatButton1.selected = false;
+            this.bunifuFlatButton1.Size = new System.Drawing.Size(147, 48);
+            this.bunifuFlatButton1.TabIndex = 23;
+            this.bunifuFlatButton1.Text = "Settings";
+            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton1.Textcolor = System.Drawing.Color.White;
+            this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // pbProfile
+            // 
+            this.pbProfile.BackColor = System.Drawing.Color.Transparent;
+            this.pbProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.animMenu.SetDecoration(this.pbProfile, BunifuAnimatorNS.DecorationType.None);
+            this.pbProfile.Image = global::kBackup.Properties.Resources.Debug2_png;
+            this.pbProfile.Location = new System.Drawing.Point(6, 8);
+            this.pbProfile.Name = "pbProfile";
+            this.pbProfile.Size = new System.Drawing.Size(35, 35);
+            this.pbProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProfile.TabIndex = 16;
+            this.pbProfile.TabStop = false;
+            // 
+            // btnMigrate
+            // 
+            this.btnMigrate.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnMigrate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnMigrate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMigrate.BorderRadius = 0;
+            this.btnMigrate.ButtonText = "Migrate";
+            this.btnMigrate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.btnMigrate, BunifuAnimatorNS.DecorationType.None);
+            this.btnMigrate.DisabledColor = System.Drawing.Color.Gray;
+            this.btnMigrate.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnMigrate.Iconimage = global::kBackup.Properties.Resources.Export_WF;
+            this.btnMigrate.Iconimage_right = null;
+            this.btnMigrate.Iconimage_right_Selected = null;
+            this.btnMigrate.Iconimage_Selected = null;
+            this.btnMigrate.IconRightVisible = true;
+            this.btnMigrate.IconRightZoom = 0D;
+            this.btnMigrate.IconVisible = true;
+            this.btnMigrate.IconZoom = 90D;
+            this.btnMigrate.IsTab = false;
+            this.btnMigrate.Location = new System.Drawing.Point(1, 247);
+            this.btnMigrate.Name = "btnMigrate";
+            this.btnMigrate.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnMigrate.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnMigrate.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnMigrate.selected = false;
+            this.btnMigrate.Size = new System.Drawing.Size(147, 48);
+            this.btnMigrate.TabIndex = 22;
+            this.btnMigrate.Text = "Migrate";
+            this.btnMigrate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMigrate.Textcolor = System.Drawing.Color.White;
+            this.btnMigrate.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(72)))), ((int)(((byte)(75)))));
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLogout.BorderRadius = 0;
+            this.btnLogout.ButtonText = "Logout";
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.btnLogout, BunifuAnimatorNS.DecorationType.None);
+            this.btnLogout.DisabledColor = System.Drawing.Color.Gray;
+            this.btnLogout.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnLogout.Iconimage = global::kBackup.Properties.Resources.Exit_01_WF;
+            this.btnLogout.Iconimage_right = null;
+            this.btnLogout.Iconimage_right_Selected = null;
+            this.btnLogout.Iconimage_Selected = null;
+            this.btnLogout.IconRightVisible = true;
+            this.btnLogout.IconRightZoom = 0D;
+            this.btnLogout.IconVisible = true;
+            this.btnLogout.IconZoom = 90D;
+            this.btnLogout.IsTab = false;
+            this.btnLogout.Location = new System.Drawing.Point(0, 517);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnLogout.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(83)))), ((int)(((byte)(86)))));
+            this.btnLogout.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnLogout.selected = false;
+            this.btnLogout.Size = new System.Drawing.Size(177, 48);
+            this.btnLogout.TabIndex = 21;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogout.Textcolor = System.Drawing.Color.White;
+            this.btnLogout.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // btnHome
+            // 
+            this.btnHome.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.btnHome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHome.BorderRadius = 0;
+            this.btnHome.ButtonText = "";
+            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.btnHome, BunifuAnimatorNS.DecorationType.None);
+            this.btnHome.DisabledColor = System.Drawing.Color.Gray;
+            this.btnHome.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnHome.Iconimage = global::kBackup.Properties.Resources.Menu_01;
+            this.btnHome.Iconimage_right = null;
+            this.btnHome.Iconimage_right_Selected = null;
+            this.btnHome.Iconimage_Selected = null;
+            this.btnHome.IconRightVisible = true;
+            this.btnHome.IconRightZoom = 0D;
+            this.btnHome.IconVisible = true;
+            this.btnHome.IconZoom = 90D;
+            this.btnHome.IsTab = false;
+            this.btnHome.Location = new System.Drawing.Point(1, 91);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnHome.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnHome.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnHome.selected = false;
+            this.btnHome.Size = new System.Drawing.Size(51, 48);
+            this.btnHome.TabIndex = 18;
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.Textcolor = System.Drawing.Color.White;
+            this.btnHome.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.Click += new System.EventHandler(this.bunifuFlatButton7_Click);
+            // 
+            // btnCommunity
+            // 
+            this.btnCommunity.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnCommunity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnCommunity.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCommunity.BorderRadius = 0;
+            this.btnCommunity.ButtonText = "Community";
+            this.btnCommunity.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.btnCommunity, BunifuAnimatorNS.DecorationType.None);
+            this.btnCommunity.DisabledColor = System.Drawing.Color.Gray;
+            this.btnCommunity.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnCommunity.Iconimage = global::kBackup.Properties.Resources.Team_01_WF;
+            this.btnCommunity.Iconimage_right = null;
+            this.btnCommunity.Iconimage_right_Selected = null;
+            this.btnCommunity.Iconimage_Selected = null;
+            this.btnCommunity.IconRightVisible = true;
+            this.btnCommunity.IconRightZoom = 0D;
+            this.btnCommunity.IconVisible = true;
+            this.btnCommunity.IconZoom = 90D;
+            this.btnCommunity.IsTab = false;
+            this.btnCommunity.Location = new System.Drawing.Point(1, 196);
+            this.btnCommunity.Name = "btnCommunity";
+            this.btnCommunity.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnCommunity.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnCommunity.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnCommunity.selected = false;
+            this.btnCommunity.Size = new System.Drawing.Size(147, 48);
+            this.btnCommunity.TabIndex = 19;
+            this.btnCommunity.Text = "Community";
+            this.btnCommunity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCommunity.Textcolor = System.Drawing.Color.White;
+            this.btnCommunity.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // btnHelpCenter
+            // 
+            this.btnHelpCenter.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnHelpCenter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnHelpCenter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHelpCenter.BorderRadius = 0;
+            this.btnHelpCenter.ButtonText = "Help Center";
+            this.btnHelpCenter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.btnHelpCenter, BunifuAnimatorNS.DecorationType.None);
+            this.btnHelpCenter.DisabledColor = System.Drawing.Color.Gray;
+            this.btnHelpCenter.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnHelpCenter.Iconimage = global::kBackup.Properties.Resources.Paper;
+            this.btnHelpCenter.Iconimage_right = null;
+            this.btnHelpCenter.Iconimage_right_Selected = null;
+            this.btnHelpCenter.Iconimage_Selected = null;
+            this.btnHelpCenter.IconRightVisible = true;
+            this.btnHelpCenter.IconRightZoom = 0D;
+            this.btnHelpCenter.IconVisible = true;
+            this.btnHelpCenter.IconZoom = 90D;
+            this.btnHelpCenter.IsTab = false;
+            this.btnHelpCenter.Location = new System.Drawing.Point(1, 145);
+            this.btnHelpCenter.Name = "btnHelpCenter";
+            this.btnHelpCenter.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnHelpCenter.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnHelpCenter.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnHelpCenter.selected = true;
+            this.btnHelpCenter.Size = new System.Drawing.Size(147, 48);
+            this.btnHelpCenter.TabIndex = 17;
+            this.btnHelpCenter.Text = "Help Center";
+            this.btnHelpCenter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHelpCenter.Textcolor = System.Drawing.Color.White;
+            this.btnHelpCenter.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // pnlMain
+            // 
+            this.animMenu.SetDecoration(this.pnlMain, BunifuAnimatorNS.DecorationType.None);
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Location = new System.Drawing.Point(50, 39);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(875, 564);
+            this.pnlMain.TabIndex = 30;
+            // 
+            // animMenu
+            // 
+            this.animMenu.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
+            this.animMenu.Cursor = null;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.animMenu.DefaultAnimation = animation1;
+            // 
+            // bunifuFlatButton3
+            // 
+            this.bunifuFlatButton3.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(83)))), ((int)(((byte)(86)))));
+            this.bunifuFlatButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bunifuFlatButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton3.BorderRadius = 0;
+            this.bunifuFlatButton3.ButtonText = "";
+            this.bunifuFlatButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.bunifuFlatButton3, BunifuAnimatorNS.DecorationType.None);
+            this.bunifuFlatButton3.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuFlatButton3.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton3.Iconimage = global::kBackup.Properties.Resources.Close_WF1111;
+            this.bunifuFlatButton3.Iconimage_right = null;
+            this.bunifuFlatButton3.Iconimage_right_Selected = null;
+            this.bunifuFlatButton3.Iconimage_Selected = null;
+            this.bunifuFlatButton3.IconRightVisible = true;
+            this.bunifuFlatButton3.IconRightZoom = 0D;
+            this.bunifuFlatButton3.IconVisible = true;
+            this.bunifuFlatButton3.IconZoom = 90D;
+            this.bunifuFlatButton3.IsTab = false;
+            this.bunifuFlatButton3.Location = new System.Drawing.Point(885, 0);
+            this.bunifuFlatButton3.Name = "bunifuFlatButton3";
+            this.bunifuFlatButton3.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton3.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(83)))), ((int)(((byte)(86)))));
+            this.bunifuFlatButton3.OnHoverTextColor = System.Drawing.Color.White;
+            this.bunifuFlatButton3.selected = false;
+            this.bunifuFlatButton3.Size = new System.Drawing.Size(41, 40);
+            this.bunifuFlatButton3.TabIndex = 39;
+            this.bunifuFlatButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton3.Textcolor = System.Drawing.Color.White;
+            this.bunifuFlatButton3.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // bunifuFlatButton10
+            // 
+            this.bunifuFlatButton10.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bunifuFlatButton10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton10.BorderRadius = 0;
+            this.bunifuFlatButton10.ButtonText = "";
+            this.bunifuFlatButton10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.bunifuFlatButton10, BunifuAnimatorNS.DecorationType.None);
+            this.bunifuFlatButton10.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuFlatButton10.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton10.Iconimage = global::kBackup.Properties.Resources.Minimize_WF1;
+            this.bunifuFlatButton10.Iconimage_right = null;
+            this.bunifuFlatButton10.Iconimage_right_Selected = null;
+            this.bunifuFlatButton10.Iconimage_Selected = null;
+            this.bunifuFlatButton10.IconRightVisible = true;
+            this.bunifuFlatButton10.IconRightZoom = 0D;
+            this.bunifuFlatButton10.IconVisible = true;
+            this.bunifuFlatButton10.IconZoom = 90D;
+            this.bunifuFlatButton10.IsTab = false;
+            this.bunifuFlatButton10.Location = new System.Drawing.Point(803, 0);
+            this.bunifuFlatButton10.Name = "bunifuFlatButton10";
+            this.bunifuFlatButton10.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton10.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton10.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(11)))), ((int)(((byte)(32)))));
+            this.bunifuFlatButton10.selected = false;
+            this.bunifuFlatButton10.Size = new System.Drawing.Size(38, 40);
+            this.bunifuFlatButton10.TabIndex = 40;
+            this.bunifuFlatButton10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton10.Textcolor = System.Drawing.Color.White;
+            this.bunifuFlatButton10.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // bunifuFlatButton11
+            // 
+            this.bunifuFlatButton11.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bunifuFlatButton11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton11.BorderRadius = 0;
+            this.bunifuFlatButton11.ButtonText = "";
+            this.bunifuFlatButton11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.animMenu.SetDecoration(this.bunifuFlatButton11, BunifuAnimatorNS.DecorationType.None);
+            this.bunifuFlatButton11.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuFlatButton11.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton11.Iconimage = global::kBackup.Properties.Resources.Maximize4_WF;
+            this.bunifuFlatButton11.Iconimage_right = null;
+            this.bunifuFlatButton11.Iconimage_right_Selected = null;
+            this.bunifuFlatButton11.Iconimage_Selected = null;
+            this.bunifuFlatButton11.IconRightVisible = true;
+            this.bunifuFlatButton11.IconRightZoom = 0D;
+            this.bunifuFlatButton11.IconVisible = true;
+            this.bunifuFlatButton11.IconZoom = 90D;
+            this.bunifuFlatButton11.IsTab = false;
+            this.bunifuFlatButton11.Location = new System.Drawing.Point(844, 0);
+            this.bunifuFlatButton11.Name = "bunifuFlatButton11";
+            this.bunifuFlatButton11.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton11.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuFlatButton11.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(11)))), ((int)(((byte)(32)))));
+            this.bunifuFlatButton11.selected = false;
+            this.bunifuFlatButton11.Size = new System.Drawing.Size(38, 40);
+            this.bunifuFlatButton11.TabIndex = 41;
+            this.bunifuFlatButton11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton11.Textcolor = System.Drawing.Color.White;
+            this.bunifuFlatButton11.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // pnlTopBar
+            // 
+            this.pnlTopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.pnlTopBar.Controls.Add(this.bunifuFlatButton11);
+            this.pnlTopBar.Controls.Add(this.bunifuFlatButton10);
+            this.pnlTopBar.Controls.Add(this.bunifuFlatButton3);
+            this.animMenu.SetDecoration(this.pnlTopBar, BunifuAnimatorNS.DecorationType.None);
+            this.pnlTopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTopBar.Location = new System.Drawing.Point(0, 0);
+            this.pnlTopBar.Name = "pnlTopBar";
+            this.pnlTopBar.Size = new System.Drawing.Size(925, 39);
+            this.pnlTopBar.TabIndex = 29;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
-            this.BackgroundImage = global::kBackup.Properties.Resources.app_background;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BorderColor = System.Drawing.Color.Transparent;
             this.BorderThickness = 0;
-            captionImage1.BackColor = System.Drawing.Color.White;
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(131)))), ((int)(((byte)(169)))));
+            this.CaptionBarHeight = 45;
+            this.CaptionButtonColor = System.Drawing.SystemColors.Control;
+            captionImage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(131)))), ((int)(((byte)(169)))));
             captionImage1.ForeColor = System.Drawing.Color.White;
             captionImage1.Location = new System.Drawing.Point(0, 0);
             captionImage1.Name = "CaptionImage1";
             captionImage1.Size = new System.Drawing.Size(26, 26);
             this.CaptionImages.Add(captionImage1);
-            this.ClientSize = new System.Drawing.Size(418, 384);
-            this.Controls.Add(this.cmbPortal);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(925, 603);
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtDomain);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnBackup);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.pnlSideMenu);
+            this.Controls.Add(this.pnlTopBar);
+            this.animMenu.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.DoubleBuffered = true;
             this.DropShadow = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
             this.ShowIcon = false;
-            this.ShowMaximizeBox = false;
             this.Load += new System.EventHandler(this.Main_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtDomain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
-            this.pnlMain.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.pnlSideMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
+            this.pnlTopBar.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtDomain;
-        private Syncfusion.Windows.Forms.ButtonAdv btnBackup;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtPassword;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtEmail;
-        private System.Windows.Forms.Label label1;
-        private Syncfusion.Windows.Forms.Tools.GradientPanel pnlMain;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private Syncfusion.Windows.Forms.FolderBrowser fldrBackupLocation;
-        private System.Windows.Forms.ComboBox cmbPortal;
+        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        public System.Windows.Forms.PictureBox pbProfile;
+        private System.Windows.Forms.Panel pnlSideMenu;
+        private Bunifu.Framework.UI.BunifuFlatButton btnCommunity;
+        private Bunifu.Framework.UI.BunifuFlatButton btnHelpCenter;
+        private Bunifu.Framework.UI.BunifuFlatButton btnLogout;
+        private Bunifu.Framework.UI.BunifuFlatButton btnMigrate;
+        private Bunifu.Framework.UI.BunifuFlatButton btnHome;
+        private System.Windows.Forms.Panel pnlMain;
+        private BunifuAnimatorNS.BunifuTransition animMenu;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
+        private System.Windows.Forms.Panel pnlTopBar;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton11;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton10;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton3;
     }
 }
 
