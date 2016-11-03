@@ -64,5 +64,15 @@ namespace kBackup.Classes
             }
             return true;
         }
+
+        public static void SaveSettings()
+        {
+
+        }
+
+        public static void LoadSettings()
+        {
+
+        }
     }
 }

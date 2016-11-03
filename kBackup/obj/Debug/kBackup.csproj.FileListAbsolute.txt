@@ -137,6 +137,7 @@ C:\Git\kBackup\kBackup\bin\Debug\Common.Logging.dll
 C:\Git\kBackup\kBackup\bin\Debug\Newtonsoft.Json.dll
 C:\Git\kBackup\kBackup\bin\Debug\Quartz.dll
 C:\Git\kBackup\kBackup\bin\Debug\RestSharp.dll
+C:\Git\kBackup\kBackup\bin\Debug\Syncfusion.Gauge.Windows.dll
 C:\Git\kBackup\kBackup\bin\Debug\EnvDTE.dll
 C:\Git\kBackup\kBackup\bin\Debug\stdole.dll
 C:\Git\kBackup\kBackup\bin\Debug\Common.Logging.pdb
@@ -147,9 +148,11 @@ C:\Git\kBackup\kBackup\bin\Debug\Newtonsoft.Json.xml
 C:\Git\kBackup\kBackup\bin\Debug\Quartz.pdb
 C:\Git\kBackup\kBackup\bin\Debug\Quartz.xml
 C:\Git\kBackup\kBackup\bin\Debug\RestSharp.xml
-C:\Git\kBackup\kBackup\obj\Debug\kBackup.Forms.Login.resources
-C:\Git\kBackup\kBackup\obj\Debug\kBackup.Forms.Main.resources
+C:\Git\kBackup\kBackup\bin\Debug\Syncfusion.Gauge.Windows.xml
+C:\Git\kBackup\kBackup\obj\Debug\kBackup.Forms.frmLogin.resources
+C:\Git\kBackup\kBackup\obj\Debug\kBackup.Forms.frmMain.resources
 C:\Git\kBackup\kBackup\obj\Debug\kBackup.Properties.Resources.resources
 C:\Git\kBackup\kBackup\obj\Debug\kBackup.csproj.GenerateResource.Cache
 C:\Git\kBackup\kBackup\obj\Debug\kBackup.exe
 C:\Git\kBackup\kBackup\obj\Debug\kBackup.pdb
+C:\Git\kBackup\kBackup\obj\Debug\kBackup.csprojResolveAssemblyReference.cache
