@@ -22,5 +22,184 @@ namespace kBackup.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState windowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["windowState"]));
+            }
+            set {
+                this["windowState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Windows.Forms.PictureBox pbAvatar {
+            get {
+                return ((global::System.Windows.Forms.PictureBox)(this["pbAvatar"]));
+            }
+            set {
+                this["pbAvatar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string dataFolder {
+            get {
+                return ((string)(this["dataFolder"]));
+            }
+            set {
+                this["dataFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string userFolder {
+            get {
+                return ((string)(this["userFolder"]));
+            }
+            set {
+                this["userFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/users/me.json")]
+        public string userApi {
+            get {
+                return ((string)(this["userApi"]));
+            }
+            set {
+                this["userApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/help_center/categories.json")]
+        public string categoryApi {
+            get {
+                return ((string)(this["categoryApi"]));
+            }
+            set {
+                this["categoryApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/help_center/categories/{1}/sections.json")]
+        public string sectionApi {
+            get {
+                return ((string)(this["sectionApi"]));
+            }
+            set {
+                this["sectionApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/help_center/sections/{1}/articles.json")]
+        public string articleApi {
+            get {
+                return ((string)(this["articleApi"]));
+            }
+            set {
+                this["articleApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/help_center/articles/{1}/comments.json")]
+        public string articleCommentApi {
+            get {
+                return ((string)(this["articleCommentApi"]));
+            }
+            set {
+                this["articleCommentApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/community/topics.json")]
+        public string topicApi {
+            get {
+                return ((string)(this["topicApi"]));
+            }
+            set {
+                this["topicApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/community/topics/{1}/posts.json")]
+        public string postApi {
+            get {
+                return ((string)(this["postApi"]));
+            }
+            set {
+                this["postApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/community/posts/{1}/comments.json")]
+        public string postCommentApi {
+            get {
+                return ((string)(this["postCommentApi"]));
+            }
+            set {
+                this["postCommentApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string domain {
+            get {
+                return ((string)(this["domain"]));
+            }
+            set {
+                this["domain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string email {
+            get {
+                return ((string)(this["email"]));
+            }
+            set {
+                this["email"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string password {
+            get {
+                return ((string)(this["password"]));
+            }
+            set {
+                this["password"] = value;
+            }
+        }
     }
 }

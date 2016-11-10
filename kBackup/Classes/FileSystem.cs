@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using kBackup.Properties;
+using Newtonsoft.Json;
+using Quartz.Util;
 
 namespace kBackup.Classes
 {
@@ -73,6 +78,121 @@ namespace kBackup.Classes
         public static void LoadSettings()
         {
 
+        }
+
+        public void ReadUserData()
+        {
+            // Read existing json data
+            var jsonData = File.ReadAllText(Settings.Default.dataFolder + "\\user\\profile.json");
+
+            // De-serialize to object or create new list
+            var employeeList = JsonConvert.DeserializeObject<List<ZApiModel.UserCollection>>(jsonData) ?? new List<ZApiModel.UserCollection>();
+
+            // Update json data string
+            jsonData = JsonConvert.SerializeObject(employeeList);
+            File.WriteAllText(Settings.Default.dataFolder + "\\user\\profile.json", jsonData);
+        }
+
+        public void ReadCategoryData()
+        {
+        }
+
+        public void ReadSectionData()
+        {
+        }
+
+        public void ReadArticleData()
+        {
+        }
+
+        public void ReadArticleCommentData()
+        {
+        }
+
+        public void ReadTopicData()
+        {
+        }
+
+        public void ReadPostData()
+        {
+        }
+
+        public void ReadPostCommentData()
+        {
+        }
+
+        /// <summary>
+        ///     Decrypts a string based on a supplied password using AES Decryption.
+        /// </summary>
+        /// <param name="input">The input string to be decrypted.</param>
+        /// <param name="password">The password to decrypt the input string with.</param>
+        /// <returns>Returns the decrypted value.</returns>
+        /// <remarks>Used for decryption of Registry path in web.config file.</remarks>
+        private string AES_Decrypt(string input, string password)
+        {
+
+            RijndaelManaged aes = new RijndaelManaged();
+            string decrypted = string.Empty;
+            try
+            {
+                byte[] hash = new byte[32];
+                // Gets the hash value of byte array of the string Password
+                byte[] temp = new MD5CryptoServiceProvider().ComputeHash(Encoding.ASCII.GetBytes(password));
+                Array.Copy(temp, 0, hash, 0, 16);
+                Array.Copy(temp, 0, hash, 15, 16);
+                // Sets the encryption key
+                aes.Key = hash;
+                aes.Mode = CipherMode.ECB;
+                ICryptoTransform desDecrypter = aes.CreateDecryptor();
+                byte[] buffer = Convert.FromBase64String(input);
+                // Decrypts the string
+                decrypted = Encoding.ASCII.GetString(desDecrypter.TransformFinalBlock(buffer, 0, buffer.Length));
+                // Return decrypted string
+                return decrypted;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        ///     Encrypts a string based on a supplied password using AES Encryption.
+        /// </summary>
+        /// <param name="input">The input string to be encrypted.</param>
+        /// <param name="password">The password to encrypt the input string with.</param>
+        /// <returns>Returns the encrypted value.</returns>
+        /// <remarks>Used for encryption of Registry path in web.config file.</remarks>
+        public string AES_Encrypt(string input, string password)
+        {
+            RijndaelManaged aesEncryption = new RijndaelManaged();
+            MD5CryptoServiceProvider md5HashCryptoSp = new MD5CryptoServiceProvider();
+            string encrypted = string.Empty;
+            try
+            {
+                byte[] hash = new byte[32];
+                // Gets the hash value of byte array of the string Password
+                byte[] temp = md5HashCryptoSp.ComputeHash(Encoding.ASCII.GetBytes(password));
+                Array.Copy(temp, 0, hash, 0, 16);
+                Array.Copy(temp, 0, hash, 15, 16);
+                // Sets the encryption keyw
+                aesEncryption.Key = hash;
+                aesEncryption.Mode = CipherMode.ECB;
+                // Encrypts the string
+                ICryptoTransform desEncrypter = aesEncryption.CreateEncryptor();
+                // Gets bytes from input string
+                byte[] buffer = Encoding.ASCII.GetBytes(input);
+                // Encrypt the input string
+                encrypted = Convert.ToBase64String(desEncrypter.TransformFinalBlock(buffer, 0, buffer.Length));
+                // Return encrypted string
+                return encrypted;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return string.Empty;
         }
     }
 }

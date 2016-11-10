@@ -55,6 +55,8 @@
             this.swRememberMe = new Bunifu.Framework.UI.BunifuiOSSwitch();
             this.btnConnect = new Bunifu.Framework.UI.BunifuFlatButton();
             this.animForm = new BunifuAnimatorNS.BunifuTransition(this.components);
+            this.bgwSyncData = new System.ComponentModel.BackgroundWorker();
+            this.bgwSyncUser = new System.ComponentModel.BackgroundWorker();
             this.pnlTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +71,7 @@
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(187, 259);
+            this.label3.Location = new System.Drawing.Point(187, 282);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 21);
             this.label3.TabIndex = 44;
@@ -84,7 +86,7 @@
             this.bunifuCustomLabel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel1.ForeColor = System.Drawing.Color.White;
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(258, 419);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(258, 400);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
             this.bunifuCustomLabel1.Size = new System.Drawing.Size(108, 21);
             this.bunifuCustomLabel1.TabIndex = 49;
@@ -100,7 +102,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(392, 259);
+            this.label1.Location = new System.Drawing.Point(392, 282);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 21);
             this.label1.TabIndex = 43;
@@ -116,7 +118,7 @@
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(204, 294);
+            this.label4.Location = new System.Drawing.Point(204, 317);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 21);
             this.label4.TabIndex = 45;
@@ -134,7 +136,7 @@
             this.cmbPortal.Items = new string[] {
         "Help Center",
         "Web Portal"};
-            this.cmbPortal.Location = new System.Drawing.Point(262, 359);
+            this.cmbPortal.Location = new System.Drawing.Point(767, 120);
             this.cmbPortal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbPortal.Name = "cmbPortal";
             this.cmbPortal.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
@@ -142,6 +144,7 @@
             this.cmbPortal.selectedIndex = 0;
             this.cmbPortal.Size = new System.Drawing.Size(232, 35);
             this.cmbPortal.TabIndex = 3;
+            this.cmbPortal.Visible = false;
             this.cmbPortal.Enter += new System.EventHandler(this.cmbPortal_Enter);
             this.cmbPortal.Leave += new System.EventHandler(this.cmbPortal_Leave);
             // 
@@ -155,7 +158,7 @@
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(176, 327);
+            this.label5.Location = new System.Drawing.Point(176, 350);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 21);
             this.label5.TabIndex = 46;
@@ -301,7 +304,7 @@
             this.animForm.SetDecoration(this.txtDomain, BunifuAnimatorNS.DecorationType.None);
             this.txtDomain.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDomain.ForeColor = System.Drawing.Color.White;
-            this.txtDomain.Location = new System.Drawing.Point(262, 258);
+            this.txtDomain.Location = new System.Drawing.Point(262, 281);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(130, 22);
             this.txtDomain.TabIndex = 0;
@@ -318,7 +321,7 @@
             this.animForm.SetDecoration(this.txtPassword, BunifuAnimatorNS.DecorationType.None);
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.White;
-            this.txtPassword.Location = new System.Drawing.Point(262, 328);
+            this.txtPassword.Location = new System.Drawing.Point(262, 351);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(232, 22);
             this.txtPassword.TabIndex = 2;
@@ -336,7 +339,7 @@
             this.animForm.SetDecoration(this.txtEmail, BunifuAnimatorNS.DecorationType.None);
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.ForeColor = System.Drawing.Color.White;
-            this.txtEmail.Location = new System.Drawing.Point(262, 294);
+            this.txtEmail.Location = new System.Drawing.Point(262, 317);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(232, 22);
             this.txtEmail.TabIndex = 1;
@@ -350,11 +353,12 @@
             this.animUnderline.SetDecoration(this.lnPortal, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.lnPortal, BunifuAnimatorNS.DecorationType.None);
             this.lnPortal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnPortal.Location = new System.Drawing.Point(259, 382);
+            this.lnPortal.Location = new System.Drawing.Point(764, 143);
             this.lnPortal.Name = "lnPortal";
             this.lnPortal.Size = new System.Drawing.Size(274, 23);
             this.lnPortal.TabIndex = 51;
             this.lnPortal.Text = "______________________________________";
+            this.lnPortal.Visible = false;
             // 
             // lnEmail
             // 
@@ -363,7 +367,7 @@
             this.animUnderline.SetDecoration(this.lnEmail, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.lnEmail, BunifuAnimatorNS.DecorationType.None);
             this.lnEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnEmail.Location = new System.Drawing.Point(259, 304);
+            this.lnEmail.Location = new System.Drawing.Point(259, 327);
             this.lnEmail.Name = "lnEmail";
             this.lnEmail.Size = new System.Drawing.Size(274, 23);
             this.lnEmail.TabIndex = 52;
@@ -376,7 +380,7 @@
             this.animUnderline.SetDecoration(this.lnPassword, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.lnPassword, BunifuAnimatorNS.DecorationType.None);
             this.lnPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnPassword.Location = new System.Drawing.Point(259, 338);
+            this.lnPassword.Location = new System.Drawing.Point(259, 361);
             this.lnPassword.Name = "lnPassword";
             this.lnPassword.Size = new System.Drawing.Size(274, 23);
             this.lnPassword.TabIndex = 53;
@@ -389,7 +393,7 @@
             this.animUnderline.SetDecoration(this.lnDomain, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.lnDomain, BunifuAnimatorNS.DecorationType.None);
             this.lnDomain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnDomain.Location = new System.Drawing.Point(260, 268);
+            this.lnDomain.Location = new System.Drawing.Point(260, 291);
             this.lnDomain.Name = "lnDomain";
             this.lnDomain.Size = new System.Drawing.Size(143, 23);
             this.lnDomain.TabIndex = 54;
@@ -425,7 +429,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.animUnderline.SetDecoration(this.pictureBox1, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.pictureBox1, BunifuAnimatorNS.DecorationType.None);
-            this.pictureBox1.Location = new System.Drawing.Point(262, 45);
+            this.pictureBox1.Location = new System.Drawing.Point(262, 68);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(223, 190);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -441,7 +445,7 @@
             this.swRememberMe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.animForm.SetDecoration(this.swRememberMe, BunifuAnimatorNS.DecorationType.None);
             this.animUnderline.SetDecoration(this.swRememberMe, BunifuAnimatorNS.DecorationType.None);
-            this.swRememberMe.Location = new System.Drawing.Point(451, 416);
+            this.swRememberMe.Location = new System.Drawing.Point(449, 397);
             this.swRememberMe.Name = "swRememberMe";
             this.swRememberMe.OffColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
             this.swRememberMe.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
@@ -456,14 +460,14 @@
             this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConnect.BorderRadius = 0;
-            this.btnConnect.ButtonText = "       Connect";
+            this.btnConnect.ButtonText = "Connect";
             this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.animUnderline.SetDecoration(this.btnConnect, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.btnConnect, BunifuAnimatorNS.DecorationType.None);
             this.btnConnect.DisabledColor = System.Drawing.Color.Gray;
             this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnConnect.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnConnect.Iconimage")));
+            this.btnConnect.Iconimage = null;
             this.btnConnect.Iconimage_right = null;
             this.btnConnect.Iconimage_right_Selected = null;
             this.btnConnect.Iconimage_Selected = null;
@@ -472,16 +476,16 @@
             this.btnConnect.IconVisible = true;
             this.btnConnect.IconZoom = 90D;
             this.btnConnect.IsTab = false;
-            this.btnConnect.Location = new System.Drawing.Point(262, 463);
+            this.btnConnect.Location = new System.Drawing.Point(262, 444);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btnConnect.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.btnConnect.OnHoverTextColor = System.Drawing.Color.White;
             this.btnConnect.selected = false;
-            this.btnConnect.Size = new System.Drawing.Size(232, 51);
+            this.btnConnect.Size = new System.Drawing.Size(231, 51);
             this.btnConnect.TabIndex = 5;
-            this.btnConnect.Text = "       Connect";
-            this.btnConnect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnConnect.Textcolor = System.Drawing.Color.White;
             this.btnConnect.TextFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
@@ -506,6 +510,18 @@
             animation4.TimeCoeff = 0F;
             animation4.TransparencyCoeff = 1F;
             this.animForm.DefaultAnimation = animation4;
+            // 
+            // bgwSyncData
+            // 
+            this.bgwSyncData.WorkerReportsProgress = true;
+            this.bgwSyncData.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwSyncData_DoWork);
+            this.bgwSyncData.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwSyncData_ProgressChanged);
+            this.bgwSyncData.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwSyncData_RunWorkerCompleted);
+            // 
+            // bgwSyncUser
+            // 
+            this.bgwSyncUser.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwSyncUser_DoWork);
+            this.bgwSyncUser.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwSyncUser_RunWorkerCompleted);
             // 
             // frmLogin
             // 
@@ -568,5 +584,7 @@
         private BunifuAnimatorNS.BunifuTransition animUnderline;
         private System.Windows.Forms.PictureBox pictureBox1;
         private BunifuAnimatorNS.BunifuTransition animForm;
+        private System.ComponentModel.BackgroundWorker bgwSyncData;
+        private System.ComponentModel.BackgroundWorker bgwSyncUser;
     }
 }

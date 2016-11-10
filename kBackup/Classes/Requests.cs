@@ -5,19 +5,25 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using System.Xml;
 using Bunifu.Framework.UI;
 using kBackup.Properties;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace kBackup.Classes
 {
     class Requests
     {
+        public bool UserValidated { get; set; }
+
         /// <summary>
         /// Public enum defining web methods.
         /// </summary>
@@ -37,7 +43,7 @@ namespace kBackup.Classes
         {
             try
             {
-                //Get(apiUrl);
+                Get(apiUrl);
             }
             catch (WebException ex)
             {
@@ -82,7 +88,7 @@ namespace kBackup.Classes
         /// True if no error occurs and all articles are retrieved successfully. 
         /// False if an exception occurs.
         /// </returns>
-        public static bool GetArticles(Bunifu.Framework.UI.BunifuDropdown portal)
+        public static bool GetArticles(BunifuDropdown portal)
         {
             //Sets the correct API string for the request.
             string apiUrl;
@@ -97,10 +103,10 @@ namespace kBackup.Classes
 
             //Create web request with appropriate Authorisation header. .zendesk.com/api/v2/help_center/articles.json .zendesk.com/api/v2/help_center/en-us/articles.json
             var request = (HttpWebRequest)WebRequest.Create(apiUrl);
-            request.Headers["Authorization"] = Requests.GetAuthHeader(ZendeskApi.Email, ZendeskApi.Password);
+            request.Headers["Authorization"] = GetAuthHeader(ZendeskApi.Email, ZendeskApi.Password);
             request.ContentType = "application/json";
             request.Accept = "application/json, application/xml, text/json, htmlContent/x-json, htmlContent/javascript, htmlContent/xml";
-            request.Method = nameof(Requests.Method.GET);
+            request.Method = nameof(Method.GET);
             request.ContentLength = 0;
             request.Timeout = 10000;
 
@@ -183,7 +189,7 @@ namespace kBackup.Classes
 
             //foreach (var user in users.users)
             //{
-            //    if (!String.Equals(user.email, Email, StringComparison.CurrentCultureIgnoreCase)) continue;
+            //    if (!string.Equals(user.email, Email, StringComparison.CurrentCultureIgnoreCase)) continue;
             //    DownloadImage(user.photo.content_url, Directory.GetCurrentDirectory() + user.photo.file_name, 0);
 
             //    if (Settings.Default.pbAvatar.InvokeRequired)
@@ -215,10 +221,10 @@ namespace kBackup.Classes
         {
             //Create web request with appropriate Authorisation header.
             var request = (HttpWebRequest)WebRequest.Create("https://" + ZendeskApi.Domain + ".zendesk.com/api/v2/users/me.json");
-            request.Headers["Authorization"] = Requests.GetAuthHeader(ZendeskApi.Email, ZendeskApi.Password);
+            request.Headers["Authorization"] = GetAuthHeader(ZendeskApi.Email, ZendeskApi.Password);
             request.ContentType = "application/json";
             request.Accept = "application/json, application/xml, text/json, htmlContent/x-json, htmlContent/javascript, htmlContent/xml";
-            request.Method = nameof(Requests.Method.GET);
+            request.Method = nameof(Method.GET);
             request.ContentLength = 0;
 
             try
@@ -258,6 +264,114 @@ namespace kBackup.Classes
             return true;
         }
 
+        public static string GetUserData()
+        {
+            try
+            {
+                // Read existing json data
+                var jsonData = string.Empty;
+                //if (File.Exists(Settings.Default.dataFolder + "\\kbackup\\user\\profile.json"))
+                //{
+                //    jsonData = File.ReadAllText(Settings.Default.dataFolder + "\\kbackup\\user\\profile.json");
+                //}
+                //else
+                //{
+                //Create web request with appropriate Authorisation header. 
+                var request =(HttpWebRequest) WebRequest.Create(string.Format(Settings.Default.userApi, Settings.Default.domain));
+                request.Headers["Authorization"] = GetAuthHeader(Settings.Default.email, Settings.Default.password);
+                request.ContentType = "application/json";
+                request.Accept ="application/json, application/xml, text/json, htmlContent/x-json, htmlContent/javascript, htmlContent/xml";
+                request.Method = nameof(Method.GET);
+                request.ContentLength = 0;
+                request.Timeout = 10000;
+
+                //Get web request response and seralize into json object
+                using (var resp = (HttpWebResponse) request.GetResponse())
+                {
+                    var rdr = new StreamReader(resp.GetResponseStream());
+                    var tmp = rdr.ReadToEnd();
+                    var user = new JavaScriptSerializer().Deserialize<ZApiModel.UserCollection>(tmp);
+
+                    if (user.user.email == "invalid@example.com" && user.user.name == "Anonymous user")
+                    {
+                        MessageBox.Show(Form.ActiveForm,@"The username or password you have entered is incorrect, please try again.");
+                        return "error";
+                    }
+
+                    // Update json data string
+                    jsonData = JsonConvert.SerializeObject(user);
+                    File.WriteAllText(Settings.Default.dataFolder + "\\kbackup\\user\\profile.json", jsonData);
+                }
+            }
+                //}
+            catch (WebException ex)
+            {
+                if (ex.Message == "The operation has timed out")
+                {
+                    Thread.Sleep(30000);
+                    GetUserData();
+                }
+
+                switch (((HttpWebResponse) ex.Response).StatusCode)
+                {
+                    case HttpStatusCode.Forbidden:
+                        MessageBox.Show(Form.ActiveForm,
+                            @"Uh oh, it looks like you do not have have access to the resources you are trying to back up. Please ensure you have Admin privileges on your Zendesk account and try again.",
+                            @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return "403";
+
+                    case HttpStatusCode.BadRequest:
+                        MessageBox.Show(Form.ActiveForm, @"bad request", @"Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return "400";
+
+                    case HttpStatusCode.NotFound:
+                        MessageBox.Show(Form.ActiveForm, @"The Zendesk domain you are requesting does not exist.",
+                            @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return "404";
+
+                    case (HttpStatusCode) .429:
+                        MessageBox.Show(Form.ActiveForm, @"You have hit the rate limit.", @"Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return "429";
+                }
+            }
+            catch (Exception e)
+            {
+                //Catch all
+                MessageBox.Show(Form.ActiveForm, @"The general exception was hit: " + e.Message);
+            }
+            return string.Empty;
+        }
+
+        public void GetCategoryData()
+        {
+        }
+
+        public void GetSectionData()
+        {
+        }
+
+        public void GetArticleData()
+        {
+        }
+
+        public void GetArticleCommentData()
+        {
+        }
+
+        public void GetTopicData()
+        {
+        }
+
+        public void GetPostData()
+        {
+        }
+
+        public void GetPostCommentData()
+        {
+        }
+
         /// <summary>
         /// Retrieves all articles, associated images and logs the URL's of the retrieved resources to a log file in the root of the backup.
         /// </summary>
@@ -284,8 +398,6 @@ namespace kBackup.Classes
                 //var deserializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
                 //var articles = deserializer.Deserialize<ZApiModel.ArticleCollection>(tmp);
             }
-
-
         }
 
         /// <summary>

@@ -130,17 +130,17 @@
   <data name="Settings - 09" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Settings - 09.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Debug2.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug2.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="app-background_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\app-background_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nocontentfound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nocontentfound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="downArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\downArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tiles-01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tiles-01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Close WF11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Close WF11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,19 +172,22 @@
   <data name="Menu_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Menu_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Close WF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Close WF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Paper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Paper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Exit-01-WF" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Exit-01-WF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close WF" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Close WF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Debug2.png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug2.png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="app-background_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\app-background_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Close WF11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Close WF11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nocontentfound" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nocontentfound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ncf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ncf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -9,8 +9,9 @@ namespace kBackup.Classes
 
         public class UserCollection
         {
-            public IList<User> users { get; set; }
-            public string next_page { get; set; }
+            public User user { get; set; }
+            //public IList<User> users { get; set; }
+            //public string next_page { get; set; }
         }
 
         public class User

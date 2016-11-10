@@ -11,12 +11,12 @@ using Syncfusion.Windows.Forms;
 
 namespace kBackup.Forms
 {
-    public partial class frmMain : MetroForm
+    public partial class FrmMain : MetroForm
     {
         /// <summary>
         /// Required for application initialization.
         /// </summary>
-        public frmMain()
+        public FrmMain()
         {
             InitializeComponent();
         }
@@ -32,8 +32,6 @@ namespace kBackup.Forms
             dgCategories.DataSource = new List<string> {"Category1","Category2","Category3"};
 
         }
-
-
 
         private void bunifuFlatButton7_Click(object sender, EventArgs e)
         {
@@ -107,5 +105,28 @@ namespace kBackup.Forms
             WindowState = FormWindowState.Minimized;
         }
 
+        private void bgwSyncData_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+            // check if user can login
+
+            // sync user data
+            //  profile pic
+            //  profile info
+
+            // sync application data
+            //  get help center data
+            //  get community data
+        }
+
+        private void bgwSyncData_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void bgwSyncData_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using kBackup.Classes;
@@ -11,6 +13,9 @@ namespace kBackup.Forms
 {
     public partial class frmLogin : MetroForm
     {
+        private readonly Requests requests = new Requests();
+        private readonly AutoResetEvent doneEvent = new AutoResetEvent(false);
+
         public frmLogin()
         {
             InitializeComponent();
@@ -19,6 +24,9 @@ namespace kBackup.Forms
         private void Login_Load(object sender, EventArgs e)
         {
             cmbPortal.selectedIndex = 0;
+            InitializeApplication();
+            //MessageBox.Show(Settings.Default.dataFolder.ToString());
+
             //ZendeskApi.Domain = txtDomain.Text.Trim();
             //ZendeskApi.Password = txtPassword.Text.Trim();
             //ZendeskApi.Email = txtEmail.Text.Trim();
@@ -78,52 +86,80 @@ namespace kBackup.Forms
         {
             btnConnect.Text = @"Connecting...";
 
-            //Settings.Default.windowState = WindowState;
+            //Settings
+            Settings.Default.windowState = WindowState;
+            Settings.Default.email = txtEmail.Text.Trim();
+            Settings.Default.password = txtPassword.Text.Trim();
+            Settings.Default.domain = txtDomain.Text.Trim();
             Settings.Default.Save();
+
+            bgwSyncUser.RunWorkerAsync();
+            doneEvent.WaitOne();
+            if (!requests.UserValidated) return;
+
+            btnConnect.Text = @"Syncing data...";
+            bgwSyncData.RunWorkerAsync();
+            doneEvent.WaitOne();
+
             Hide();
-
-            Task task = new Task(StartSync);
-            task.Start();
-            task.Wait();
-            Console.ReadLine();
-
-            var mf = new frmMain();
+            var mf = new FrmMain();
             mf.Show();
         }
 
-        static async void StartSync()
+        private void bgwSyncData_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            Task<int> task = SyncData();
-            int x = await task;
-        }
-
-        static async Task<int> SyncData()
-        {
-            Console.WriteLine("HandleFile enter");
-            int count = 0;
-
-            // Read in the specified file.
-            // ... Use async StreamReader method.
-            using (StreamReader reader = new StreamReader(""))
+            try
             {
-                string v = await reader.ReadToEndAsync();
-
-                // ... Process the file data somehow.
-                count += v.Length;
-
-                // ... A slow-running computation.
-                //     Dummy code.
-                for (int i = 0; i < 10000; i++)
+                if (!e.Cancel)
                 {
-                    int x = v.GetHashCode();
-                    if (x == 0)
-                    {
-                        count--;
-                    }
+
                 }
             }
-            Console.WriteLine("HandleFile exit");
-            return count;
+            finally
+            {
+                doneEvent.Set();
+            }
+
+            // check if user can login
+
+            // sync user data
+            //  profile pic
+            //  profile info
+
+            // sync application data
+            //  get help center data
+            //  get community data
+        }
+
+        private void bgwSyncData_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void bgwSyncData_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            btnConnect.Text = @"Successful!";
+        }
+
+        private void bgwSyncUser_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            try
+            {
+                if (!e.Cancel)
+                {
+                    requests.UserValidated = Requests.GetUserData();
+                }
+            }
+            finally
+            {
+                doneEvent.Set();
+            }
+        }
+
+        private void bgwSyncUser_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+
+            btnConnect.Text = requests.UserValidated ? @"Connected!" : @"Login Failed!";
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -139,6 +175,19 @@ namespace kBackup.Forms
         private void minHandler(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private static void InitializeApplication()
+        {
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup\\user");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup\\data");
+            }
+
+            Settings.Default.dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            Settings.Default.Save();
         }
 
         #region UnderlineAnim

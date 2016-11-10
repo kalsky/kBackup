@@ -1,5 +1,51 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="kBackup.Properties" GeneratedClassName="Settings">
   <Profiles />
-  <Settings />
+  <Settings>
+    <Setting Name="windowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="pbAvatar" Type="System.Windows.Forms.PictureBox" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="dataFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="userFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="userApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/users/me.json</Value>
+    </Setting>
+    <Setting Name="categoryApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/categories.json</Value>
+    </Setting>
+    <Setting Name="sectionApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/categories/{1}/sections.json</Value>
+    </Setting>
+    <Setting Name="articleApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/sections/{1}/articles.json</Value>
+    </Setting>
+    <Setting Name="articleCommentApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/articles/{1}/comments.json</Value>
+    </Setting>
+    <Setting Name="topicApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/community/topics.json</Value>
+    </Setting>
+    <Setting Name="postApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/community/topics/{1}/posts.json</Value>
+    </Setting>
+    <Setting Name="postCommentApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/community/posts/{1}/comments.json</Value>
+    </Setting>
+    <Setting Name="domain" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="email" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>
