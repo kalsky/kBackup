@@ -72,22 +72,22 @@ namespace kBackup.Classes
         public class Content
         {
             [JsonPropertyAttribute("Id")]
-            public int id { get; set; }
+            public Int64 Id { get; set; }
 
             [JsonPropertyAttribute("Url")]
-            public string html_url { get; set; }
+            public string Html_url { get; set; }
 
             [JsonPropertyAttribute("Title")]
-            public string title { get; set; }
+            public string Title { get; set; }
 
             [JsonPropertyAttribute("Body")]
-            public string body { get; set; }
+            public string Body { get; set; }
 
             [JsonPropertyAttribute("SectionId")]
-            public string section_id { get; set; }
+            public string Section_id { get; set; }
 
             [JsonPropertyAttribute("ForumId")]
-            public string forum_id { get; set; }
+            public string Forum_id { get; set; }
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace kBackup.Classes
         /// </summary>
         public class User
         {
-            public int Id { get; set; }
+            public Int64 Id { get; set; }
             public string Name { get; set; }
             public string Email { get; set; }
         }
@@ -295,22 +295,22 @@ namespace kBackup.Classes
             foreach (var article in articles.Articles ?? articles.Topics)
             {
                 //Write article heading and content into text file and save as html
-                ArticleId = article.id.ToString();
-                htmlContent.AppendLine("<h1>" + article.title + "</h1>");
-                htmlContent.AppendLine(article.body);
+                ArticleId = article.Id.ToString();
+                htmlContent.AppendLine("<h1>" + article.Title + "</h1>");
+                htmlContent.AppendLine(article.Body);
 
                 try
                 {
                     Directory.CreateDirectory(BackupFolder);
-                    File.WriteAllText(BackupFolder + @"\" + ArticleId + ".html", htmlContent.ToString(), Encoding.UTF8);
+                    File.WriteAllText(BackupFolder + @"\" + RemoveInvalidFilePathCharacters((article.Title + " (" + ArticleId + ")").Trim(Convert.ToChar("/")), "_").TrimStart(Convert.ToChar("_")) + ".html", htmlContent.ToString(), Encoding.UTF8);
 
                     //Log the backed up resource in the backup log
                     using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
                     {
-                        sw.WriteLine("article_" + (article.section_id ?? ArticleId) + ": " + (article.html_url ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
+                        sw.WriteLine("article_" + RemoveInvalidFilePathCharacters(article.Title.Trim(Convert.ToChar("/")), "_").TrimStart(Convert.ToChar("_")) + " (" + (article.Section_id ?? ArticleId) + "): " + (article.Html_url ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
                     }
 
-                    GetImageList(htmlContent, article, article.section_id);
+                    GetImageList(htmlContent, article, article.Section_id);
                 }
                 catch (UnauthorizedAccessException)
                 {
@@ -358,13 +358,13 @@ namespace kBackup.Classes
                 var fullFileName = str.Split(Convert.ToChar("."));
                 var fileName = RemoveInvalidFilePathCharacters(fullFileName[0].Trim(Convert.ToChar("/")), "_");
 
-                if (!DownloadImage(url, BackupFolder + "\\images\\" + ArticleId + "_" + fileName, sectionId))
+                if (!DownloadImage(url, BackupFolder + "\\images\\" + RemoveInvalidFilePathCharacters((article.Title + " (" + ArticleId + ")").Trim(Convert.ToChar("/")), "_").TrimStart(Convert.ToChar("_")) + "_" + fileName, sectionId))
                     continue;
 
                 //Log the backed up resource in the backup log
                 using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
                 {
-                    sw.WriteLine("image_" + (article.section_id ?? ArticleId) + ": " + url);
+                    sw.WriteLine("image_" + (article.Section_id ?? ArticleId) + ": " + url);
                 }
                 //Thread.Sleep(1000);
             }
