@@ -111,7 +111,7 @@
             this.pnlTopBar.Name = "pnlTopBar";
             this.pnlTopBar.Size = new System.Drawing.Size(925, 39);
             this.pnlTopBar.TabIndex = 29;
-            this.pnlTopBar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.maxHandler);
+            this.pnlTopBar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.MaxHandler);
             // 
             // btnMax
             // 
@@ -146,7 +146,7 @@
             this.btnMax.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMax.Textcolor = System.Drawing.Color.White;
             this.btnMax.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMax.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maxHandler);
+            this.btnMax.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MaxHandler);
             // 
             // btnMin
             // 
@@ -181,7 +181,7 @@
             this.btnMin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMin.Textcolor = System.Drawing.Color.White;
             this.btnMin.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMin.Click += new System.EventHandler(this.minHandler);
+            this.btnMin.Click += new System.EventHandler(this.MinHandler);
             // 
             // btnClose
             // 
@@ -216,7 +216,7 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Textcolor = System.Drawing.Color.White;
             this.btnClose.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // pnlSideMenu
             // 
@@ -268,7 +268,7 @@
             this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSettings.Textcolor = System.Drawing.Color.White;
             this.btnSettings.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            this.btnSettings.Click += new System.EventHandler(this.BtnSettings_Click);
             // 
             // pbProfile
             // 
@@ -282,7 +282,7 @@
             this.pbProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProfile.TabIndex = 16;
             this.pbProfile.TabStop = false;
-            this.pbProfile.Click += new System.EventHandler(this.pbProfile_Click);
+            this.pbProfile.Click += new System.EventHandler(this.PbProfile_Click);
             // 
             // btnMigrate
             // 
@@ -316,7 +316,7 @@
             this.btnMigrate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMigrate.Textcolor = System.Drawing.Color.White;
             this.btnMigrate.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMigrate.Click += new System.EventHandler(this.btnMigrate_Click);
+            this.btnMigrate.Click += new System.EventHandler(this.BtnMigrate_Click);
             // 
             // btnLogout
             // 
@@ -384,7 +384,7 @@
             this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHome.Textcolor = System.Drawing.Color.White;
             this.btnHome.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome.Click += new System.EventHandler(this.bunifuFlatButton7_Click);
+            this.btnHome.Click += new System.EventHandler(this.BunifuFlatButton7_Click);
             // 
             // btnCommunity
             // 
@@ -418,7 +418,7 @@
             this.btnCommunity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCommunity.Textcolor = System.Drawing.Color.White;
             this.btnCommunity.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCommunity.Click += new System.EventHandler(this.btnCommunity_Click);
+            this.btnCommunity.Click += new System.EventHandler(this.BtnCommunity_Click);
             // 
             // btnHelpCenter
             // 
@@ -452,7 +452,7 @@
             this.btnHelpCenter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHelpCenter.Textcolor = System.Drawing.Color.White;
             this.btnHelpCenter.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelpCenter.Click += new System.EventHandler(this.btnHelpCenter_Click);
+            this.btnHelpCenter.Click += new System.EventHandler(this.BtnHelpCenter_Click);
             // 
             // animMenu
             // 
@@ -710,7 +710,7 @@
             this.lblRefresh.TabStop = true;
             this.lblRefresh.Text = "Refresh";
             this.lblRefresh.VisitedLinkColor = System.Drawing.Color.SeaGreen;
-            this.lblRefresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblRefresh_LinkClicked);
+            this.lblRefresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblRefresh_LinkClickedAsync);
             // 
             // pbNoContent
             // 

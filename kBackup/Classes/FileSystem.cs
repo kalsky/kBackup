@@ -63,7 +63,7 @@ namespace kBackup.Classes
             File.WriteAllText(Settings.Default.dataFolder + "\\user\\profile.json", jsonData);
         }
 
-        public async Task<ZApiModel.CategoryCollection> ReadCategoryData()
+        public async Task<ZApiModel.CategoryCollection> ReadCategoryDataAsync()
         {
 
             string jsonData;

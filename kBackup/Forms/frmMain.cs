@@ -35,14 +35,14 @@ namespace kBackup.Forms
             // sync the data to List<object>
             WindowState = Settings.Default.windowState;
 
-            SyncAllData();
+            SyncAllDataAsync();
             // load lists into grid based on cat and sect filters
             //_fileSystem.read
             //dgCategories.DataSource = new List<string> {"Category1","Category2","Category3","","","","","","","","","","","",""};
 
         }
 
-        private void bunifuFlatButton7_Click(object sender, EventArgs e)
+        private void BunifuFlatButton7_Click(object sender, EventArgs e)
         {
             if (pnlSideMenu.Width == 50)
             {
@@ -58,7 +58,7 @@ namespace kBackup.Forms
             }
         }
 
-        private void btnHelpCenter_Click(object sender, EventArgs e)
+        private void BtnHelpCenter_Click(object sender, EventArgs e)
         {
             pnlCommunity.Visible = false;
             pnlMigrate.Visible = false;
@@ -67,7 +67,7 @@ namespace kBackup.Forms
             pnlHelpCenter.BringToFront();
         }
 
-        private void btnCommunity_Click(object sender, EventArgs e)
+        private void BtnCommunity_Click(object sender, EventArgs e)
         {
             pnlCommunity.Visible = true;
             pnlMigrate.Visible = false;
@@ -76,7 +76,7 @@ namespace kBackup.Forms
             pnlCommunity.BringToFront();
         }
 
-        private void btnMigrate_Click(object sender, EventArgs e)
+        private void BtnMigrate_Click(object sender, EventArgs e)
         {
             pnlCommunity.Visible = false;
             pnlMigrate.Visible = true;
@@ -85,7 +85,7 @@ namespace kBackup.Forms
             pnlMigrate.BringToFront();
         }
 
-        private void btnSettings_Click(object sender, EventArgs e)
+        private void BtnSettings_Click(object sender, EventArgs e)
         {
             pnlCommunity.Visible = false;
             pnlMigrate.Visible = false;
@@ -94,29 +94,29 @@ namespace kBackup.Forms
             pnlSettings.BringToFront();
         }
 
-        private void pbProfile_Click(object sender, EventArgs e)
+        private void PbProfile_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void maxHandler(object sender, MouseEventArgs e)
+        private void MaxHandler(object sender, MouseEventArgs e)
         {
             WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
         }
 
-        private void minHandler(object sender, EventArgs e)
+        private void MinHandler(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
 
-        private async void SyncAllData()
+        private async void SyncAllDataAsync()
         {
-            var catData = await _fileSystem.ReadCategoryData();
+            var catData = await _fileSystem.ReadCategoryDataAsync();
 
             foreach (var cat in catData.categories)
             {
@@ -124,7 +124,7 @@ namespace kBackup.Forms
 
             }
 
-            RefreshCategoryDG();
+            //RefreshCategoryDG();
 
 
 
@@ -213,14 +213,14 @@ namespace kBackup.Forms
         {
         }
 
-        private async void RefreshCategoryDG()
-        {
-            var sortedData =  Categories.OrderBy(s => s, StringComparer.CurrentCultureIgnoreCase);
-            var categoryData = from row in Categories select new { name = row.Value };
-            dgCategories.DataSource = categoryData.ToArray();
-        }
+        //private async void RefreshCategoryDG()
+        //{
+        //    var sortedData =  Categories.OrderBy(s => s, StringComparer.CurrentCultureIgnoreCase);
+        //    var categoryData = from row in Categories select new { name = row.Value };
+        //    dgCategories.DataSource = categoryData.ToArray();
+        //}
 
-        private async void lblRefresh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private async void LblRefresh_LinkClickedAsync(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
         }
