@@ -96,7 +96,7 @@ namespace kBackup.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/help_center/categories/{1}/sections.json")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://{0}.zendesk.com/api/v2/help_center/sections.json")]
         public string sectionApi {
             get {
                 return ((string)(this["sectionApi"]));
@@ -199,6 +199,27 @@ namespace kBackup.Properties {
             }
             set {
                 this["password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool rememberMe {
+            get {
+                return ((bool)(this["rememberMe"]));
+            }
+            set {
+                this["rememberMe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pheK6CfevU84UCYa36erqBY68MeRTtnyVXg7mjhZvRXnWK7yQTp6xMTnF2nGbzpKVvk4gN74")]
+        public string encryptPassword {
+            get {
+                return ((string)(this["encryptPassword"]));
             }
         }
     }

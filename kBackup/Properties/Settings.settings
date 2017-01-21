@@ -21,7 +21,7 @@
       <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/categories.json</Value>
     </Setting>
     <Setting Name="sectionApi" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/categories/{1}/sections.json</Value>
+      <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/sections.json</Value>
     </Setting>
     <Setting Name="articleApi" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://{0}.zendesk.com/api/v2/help_center/sections/{1}/articles.json</Value>
@@ -46,6 +46,12 @@
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="rememberMe" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="encryptPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pheK6CfevU84UCYa36erqBY68MeRTtnyVXg7mjhZvRXnWK7yQTp6xMTnF2nGbzpKVvk4gN74</Value>
     </Setting>
   </Settings>
 </SettingsFile>

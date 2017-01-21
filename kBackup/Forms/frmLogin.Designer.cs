@@ -1,6 +1,6 @@
 ﻿namespace kBackup.Forms
 {
-    partial class frmLogin
+    partial class FrmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation3 = new BunifuAnimatorNS.Animation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            BunifuAnimatorNS.Animation animation4 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation7 = new BunifuAnimatorNS.Animation();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
+            BunifuAnimatorNS.Animation animation8 = new BunifuAnimatorNS.Animation();
             this.label3 = new System.Windows.Forms.Label();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,9 +54,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.swRememberMe = new Bunifu.Framework.UI.BunifuiOSSwitch();
             this.btnConnect = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.txtError = new System.Windows.Forms.TextBox();
             this.animForm = new BunifuAnimatorNS.BunifuTransition(this.components);
-            this.bgwSyncData = new System.ComponentModel.BackgroundWorker();
-            this.bgwSyncUser = new System.ComponentModel.BackgroundWorker();
+            this.tmrButtonColor = new System.Windows.Forms.Timer(this.components);
+            this.tmrLoginSuccessful = new System.Windows.Forms.Timer(this.components);
             this.pnlTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,10 +72,10 @@
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(187, 282);
+            this.label3.Location = new System.Drawing.Point(195, 282);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 21);
-            this.label3.TabIndex = 44;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Domain";
             // 
             // bunifuCustomLabel1
@@ -86,10 +87,10 @@
             this.bunifuCustomLabel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel1.ForeColor = System.Drawing.Color.White;
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(258, 400);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(266, 400);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
             this.bunifuCustomLabel1.Size = new System.Drawing.Size(108, 21);
-            this.bunifuCustomLabel1.TabIndex = 49;
+            this.bunifuCustomLabel1.TabIndex = 0;
             this.bunifuCustomLabel1.Text = "Remember me";
             // 
             // label1
@@ -102,10 +103,10 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(392, 282);
+            this.label1.Location = new System.Drawing.Point(400, 282);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 21);
-            this.label1.TabIndex = 43;
+            this.label1.TabIndex = 0;
             this.label1.Text = ".zendesk.com";
             // 
             // label4
@@ -118,10 +119,10 @@
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(204, 317);
+            this.label4.Location = new System.Drawing.Point(212, 317);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 21);
-            this.label4.TabIndex = 45;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Email";
             // 
             // cmbPortal
@@ -158,10 +159,10 @@
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(176, 350);
+            this.label5.Location = new System.Drawing.Point(184, 350);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 21);
-            this.label5.TabIndex = 46;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Password";
             // 
             // pnlTopBar
@@ -209,7 +210,7 @@
             this.btnMax.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(11)))), ((int)(((byte)(32)))));
             this.btnMax.selected = false;
             this.btnMax.Size = new System.Drawing.Size(40, 40);
-            this.btnMax.TabIndex = 41;
+            this.btnMax.TabIndex = 7;
             this.btnMax.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMax.Textcolor = System.Drawing.Color.White;
             this.btnMax.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,7 +246,7 @@
             this.btnMin.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(11)))), ((int)(((byte)(32)))));
             this.btnMin.selected = false;
             this.btnMin.Size = new System.Drawing.Size(40, 40);
-            this.btnMin.TabIndex = 40;
+            this.btnMin.TabIndex = 6;
             this.btnMin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMin.Textcolor = System.Drawing.Color.White;
             this.btnMin.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -281,7 +282,7 @@
             this.btnClose.OnHoverTextColor = System.Drawing.Color.White;
             this.btnClose.selected = false;
             this.btnClose.Size = new System.Drawing.Size(41, 40);
-            this.btnClose.TabIndex = 39;
+            this.btnClose.TabIndex = 8;
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Textcolor = System.Drawing.Color.White;
             this.btnClose.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -304,10 +305,11 @@
             this.animForm.SetDecoration(this.txtDomain, BunifuAnimatorNS.DecorationType.None);
             this.txtDomain.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDomain.ForeColor = System.Drawing.Color.White;
-            this.txtDomain.Location = new System.Drawing.Point(262, 281);
+            this.txtDomain.Location = new System.Drawing.Point(270, 281);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(130, 22);
             this.txtDomain.TabIndex = 0;
+            this.txtDomain.TextChanged += new System.EventHandler(this.txtBoxes_TextChanged);
             this.txtDomain.Enter += new System.EventHandler(this.txtDomain_Enter);
             this.txtDomain.Leave += new System.EventHandler(this.txtDomain_Leave);
             // 
@@ -321,11 +323,12 @@
             this.animForm.SetDecoration(this.txtPassword, BunifuAnimatorNS.DecorationType.None);
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.White;
-            this.txtPassword.Location = new System.Drawing.Point(262, 351);
+            this.txtPassword.Location = new System.Drawing.Point(270, 351);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(232, 22);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtBoxes_TextChanged);
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
@@ -339,10 +342,11 @@
             this.animForm.SetDecoration(this.txtEmail, BunifuAnimatorNS.DecorationType.None);
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.ForeColor = System.Drawing.Color.White;
-            this.txtEmail.Location = new System.Drawing.Point(262, 317);
+            this.txtEmail.Location = new System.Drawing.Point(270, 317);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(232, 22);
             this.txtEmail.TabIndex = 1;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtBoxes_TextChanged);
             this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
             this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
@@ -367,7 +371,7 @@
             this.animUnderline.SetDecoration(this.lnEmail, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.lnEmail, BunifuAnimatorNS.DecorationType.None);
             this.lnEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnEmail.Location = new System.Drawing.Point(259, 327);
+            this.lnEmail.Location = new System.Drawing.Point(267, 327);
             this.lnEmail.Name = "lnEmail";
             this.lnEmail.Size = new System.Drawing.Size(274, 23);
             this.lnEmail.TabIndex = 52;
@@ -380,7 +384,7 @@
             this.animUnderline.SetDecoration(this.lnPassword, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.lnPassword, BunifuAnimatorNS.DecorationType.None);
             this.lnPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnPassword.Location = new System.Drawing.Point(259, 361);
+            this.lnPassword.Location = new System.Drawing.Point(267, 361);
             this.lnPassword.Name = "lnPassword";
             this.lnPassword.Size = new System.Drawing.Size(274, 23);
             this.lnPassword.TabIndex = 53;
@@ -393,7 +397,7 @@
             this.animUnderline.SetDecoration(this.lnDomain, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.lnDomain, BunifuAnimatorNS.DecorationType.None);
             this.lnDomain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnDomain.Location = new System.Drawing.Point(260, 291);
+            this.lnDomain.Location = new System.Drawing.Point(268, 291);
             this.lnDomain.Name = "lnDomain";
             this.lnDomain.Size = new System.Drawing.Size(143, 23);
             this.lnDomain.TabIndex = 54;
@@ -403,22 +407,22 @@
             // 
             this.animUnderline.AnimationType = BunifuAnimatorNS.AnimationType.HorizBlind;
             this.animUnderline.Cursor = null;
-            animation3.AnimateOnlyDifferences = true;
-            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
-            animation3.LeafCoeff = 0F;
-            animation3.MaxTime = 1F;
-            animation3.MinTime = 0F;
-            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
-            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
-            animation3.MosaicSize = 0;
-            animation3.Padding = new System.Windows.Forms.Padding(0);
-            animation3.RotateCoeff = 0F;
-            animation3.RotateLimit = 0F;
-            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
-            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
-            animation3.TimeCoeff = 0F;
-            animation3.TransparencyCoeff = 0F;
-            this.animUnderline.DefaultAnimation = animation3;
+            animation7.AnimateOnlyDifferences = true;
+            animation7.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation7.BlindCoeff")));
+            animation7.LeafCoeff = 0F;
+            animation7.MaxTime = 1F;
+            animation7.MinTime = 0F;
+            animation7.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation7.MosaicCoeff")));
+            animation7.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation7.MosaicShift")));
+            animation7.MosaicSize = 0;
+            animation7.Padding = new System.Windows.Forms.Padding(0);
+            animation7.RotateCoeff = 0F;
+            animation7.RotateLimit = 0F;
+            animation7.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation7.ScaleCoeff")));
+            animation7.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation7.SlideCoeff")));
+            animation7.TimeCoeff = 0F;
+            animation7.TransparencyCoeff = 0F;
+            this.animUnderline.DefaultAnimation = animation7;
             this.animUnderline.MaxAnimationTime = 250;
             this.animUnderline.TimeStep = 0.05F;
             // 
@@ -429,7 +433,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.animUnderline.SetDecoration(this.pictureBox1, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this.pictureBox1, BunifuAnimatorNS.DecorationType.None);
-            this.pictureBox1.Location = new System.Drawing.Point(262, 68);
+            this.pictureBox1.Location = new System.Drawing.Point(270, 68);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(223, 190);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -445,13 +449,13 @@
             this.swRememberMe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.animForm.SetDecoration(this.swRememberMe, BunifuAnimatorNS.DecorationType.None);
             this.animUnderline.SetDecoration(this.swRememberMe, BunifuAnimatorNS.DecorationType.None);
-            this.swRememberMe.Location = new System.Drawing.Point(449, 397);
+            this.swRememberMe.Location = new System.Drawing.Point(457, 397);
             this.swRememberMe.Name = "swRememberMe";
             this.swRememberMe.OffColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
             this.swRememberMe.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.swRememberMe.Size = new System.Drawing.Size(43, 25);
             this.swRememberMe.TabIndex = 4;
-            this.swRememberMe.Value = true;
+            this.swRememberMe.Value = false;
             // 
             // btnConnect
             // 
@@ -476,7 +480,7 @@
             this.btnConnect.IconVisible = true;
             this.btnConnect.IconZoom = 90D;
             this.btnConnect.IsTab = false;
-            this.btnConnect.Location = new System.Drawing.Point(262, 444);
+            this.btnConnect.Location = new System.Drawing.Point(270, 444);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btnConnect.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
@@ -490,45 +494,61 @@
             this.btnConnect.TextFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
+            // txtError
+            // 
+            this.txtError.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtError.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
+            this.txtError.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.animUnderline.SetDecoration(this.txtError, BunifuAnimatorNS.DecorationType.None);
+            this.animForm.SetDecoration(this.txtError, BunifuAnimatorNS.DecorationType.None);
+            this.txtError.Font = new System.Drawing.Font("Segoe UI Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtError.ForeColor = System.Drawing.Color.White;
+            this.txtError.Location = new System.Drawing.Point(270, 502);
+            this.txtError.Multiline = true;
+            this.txtError.Name = "txtError";
+            this.txtError.Size = new System.Drawing.Size(230, 58);
+            this.txtError.TabIndex = 56;
+            this.txtError.TabStop = false;
+            this.txtError.Visible = false;
+            // 
             // animForm
             // 
             this.animForm.AnimationType = BunifuAnimatorNS.AnimationType.Transparent;
             this.animForm.Cursor = null;
-            animation4.AnimateOnlyDifferences = true;
-            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
-            animation4.LeafCoeff = 0F;
-            animation4.MaxTime = 1F;
-            animation4.MinTime = 0F;
-            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
-            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
-            animation4.MosaicSize = 0;
-            animation4.Padding = new System.Windows.Forms.Padding(0);
-            animation4.RotateCoeff = 0F;
-            animation4.RotateLimit = 0F;
-            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
-            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
-            animation4.TimeCoeff = 0F;
-            animation4.TransparencyCoeff = 1F;
-            this.animForm.DefaultAnimation = animation4;
+            animation8.AnimateOnlyDifferences = true;
+            animation8.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.BlindCoeff")));
+            animation8.LeafCoeff = 0F;
+            animation8.MaxTime = 1F;
+            animation8.MinTime = 0F;
+            animation8.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.MosaicCoeff")));
+            animation8.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation8.MosaicShift")));
+            animation8.MosaicSize = 0;
+            animation8.Padding = new System.Windows.Forms.Padding(0);
+            animation8.RotateCoeff = 0F;
+            animation8.RotateLimit = 0F;
+            animation8.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.ScaleCoeff")));
+            animation8.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation8.SlideCoeff")));
+            animation8.TimeCoeff = 0F;
+            animation8.TransparencyCoeff = 1F;
+            this.animForm.DefaultAnimation = animation8;
             // 
-            // bgwSyncData
+            // tmrButtonColor
             // 
-            this.bgwSyncData.WorkerReportsProgress = true;
-            this.bgwSyncData.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwSyncData_DoWork);
-            this.bgwSyncData.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwSyncData_ProgressChanged);
-            this.bgwSyncData.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwSyncData_RunWorkerCompleted);
+            this.tmrButtonColor.Interval = 1000;
+            this.tmrButtonColor.Tick += new System.EventHandler(this.tmrButtonColor_Tick);
             // 
-            // bgwSyncUser
+            // tmrLoginSuccessful
             // 
-            this.bgwSyncUser.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwSyncUser_DoWork);
-            this.bgwSyncUser.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwSyncUser_RunWorkerCompleted);
+            this.tmrLoginSuccessful.Interval = 1000;
+            this.tmrLoginSuccessful.Tick += new System.EventHandler(this.tmrLoginSuccessful_Tick);
             // 
-            // frmLogin
+            // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(760, 572);
+            this.Controls.Add(this.txtError);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtPassword);
@@ -549,7 +569,7 @@
             this.animUnderline.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.animForm.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmLogin";
+            this.Name = "FrmLogin";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.pnlTopBar.ResumeLayout(false);
@@ -584,7 +604,8 @@
         private BunifuAnimatorNS.BunifuTransition animUnderline;
         private System.Windows.Forms.PictureBox pictureBox1;
         private BunifuAnimatorNS.BunifuTransition animForm;
-        private System.ComponentModel.BackgroundWorker bgwSyncData;
-        private System.ComponentModel.BackgroundWorker bgwSyncUser;
+        private System.Windows.Forms.Timer tmrButtonColor;
+        private System.Windows.Forms.TextBox txtError;
+        private System.Windows.Forms.Timer tmrLoginSuccessful;
     }
 }

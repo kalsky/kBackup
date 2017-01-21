@@ -1,170 +1,120 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using kBackup.Classes;
 using kBackup.Properties;
+using Quartz.Util;
 using Syncfusion.Windows.Forms;
 
 namespace kBackup.Forms
 {
-    public partial class frmLogin : MetroForm
+    public partial class FrmLogin : MetroForm
     {
-        private readonly Requests requests = new Requests();
-        private readonly AutoResetEvent doneEvent = new AutoResetEvent(false);
+        private readonly Requests _requests = new Requests();
 
-        public frmLogin()
+        public FrmLogin()
         {
             InitializeComponent();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
+            //Mimic form AcceptButton property. 
+            //BunifuControls currently don't implement IButtonControl required.
+            KeyDown += ConnectOnEnterClicked;
+            txtDomain.KeyDown += ConnectOnEnterClicked;
+            txtEmail.KeyDown += ConnectOnEnterClicked;
+            txtPassword.KeyDown += ConnectOnEnterClicked;
+            btnConnect.KeyDown += ConnectOnEnterClicked;
+
+            swRememberMe.KeyDown += RemeberMeOnEnterClicked;
+
             cmbPortal.selectedIndex = 0;
             InitializeApplication();
-            //MessageBox.Show(Settings.Default.dataFolder.ToString());
-
-            //ZendeskApi.Domain = txtDomain.Text.Trim();
-            //ZendeskApi.Password = txtPassword.Text.Trim();
-            //ZendeskApi.Email = txtEmail.Text.Trim();
-            //ZendeskApi.Query = "?page=";
-
-            ////Settings.Default.pbAvatar = pbProfile;
-            //Settings.Default.Save();
-            //Requests.GetUser(ZendeskApi.Email, cmbPortal);
-
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////
-            ////Set properties 
-            //ZendeskApi.Domain = txtDomain.Text.Trim();
-            //ZendeskApi.Password = txtPassword.Text.Trim();
-            //ZendeskApi.Email = txtEmail.Text.Trim();
-            //ZendeskApi.Query = "?page=";
-
-            ////Check that a domain was provided by the user.
-            //if (ZendeskApi.Domain.Trim() != string.Empty)
-            //{
-            //    //Validate the users credentials.
-            //    if (!Requests.ValidateUser()) return;
-
-            //    //Retrieve all articles and associated images.
-            //    if (Requests.GetArticles(cmbPortal))
-            //    {
-            //        MessageBox.Show(this, @"Backup completed to path: " + ZendeskApi.BackupFolder, @"Backup Complete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show(this, @"The backup did not complete successfully.", @"Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show(this, @"Please enter a domain before continuing.", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //Requests.GetCollections("http://adwadawaf.awdawa.dwaa");
-
-            ////Set properties 
-            //ZendeskApi.Domain = txtDomain.Text.Trim();
-            //ZendeskApi.Password = txtPassword.Text.Trim();
-            //ZendeskApi.Email = txtEmail.Text.Trim();
-            //ZendeskApi.Query = "?page=";
-
-            ////Settings.Default.pbAvatar = pbProfile;
-            //Settings.Default.Save();
-
-            ////ZendeskApi.GetUser(ZendeskApi.Email,cmbPortal);
-
-            ////ZendeskApi.Post("","");
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private async void btnConnect_Click(object sender, EventArgs e)
         {
+            // validate user exists in application
+            if (!CheckCompletedFields()) return;
+            txtError.Text = string.Empty;
+            txtError.Visible = false;
             btnConnect.Text = @"Connecting...";
 
-            //Settings
+            #region Settings
+
             Settings.Default.windowState = WindowState;
             Settings.Default.email = txtEmail.Text.Trim();
             Settings.Default.password = txtPassword.Text.Trim();
             Settings.Default.domain = txtDomain.Text.Trim();
             Settings.Default.Save();
 
-            bgwSyncUser.RunWorkerAsync();
-            doneEvent.WaitOne();
-            if (!requests.UserValidated) return;
+            #endregion
 
-            btnConnect.Text = @"Syncing data...";
-            bgwSyncData.RunWorkerAsync();
-            doneEvent.WaitOne();
+            #region User Data
 
-            Hide();
-            var mf = new FrmMain();
-            mf.Show();
-        }
+            //var userValidated = await _requests.GetUserData();
+            //if (!userValidated)
+            //{
+            //    btnConnect.DisabledColor = Color.FromArgb(215, 83, 86);
+            //    btnConnect.Enabled = false;
+            //    txtError.Text = Requests.ErrorMessage;
+            //    txtError.Visible = true;
+            //    btnConnect.Text = @"Login Failed!";
+            //    btnConnect.Activecolor = Color.FromArgb(215, 83, 86);
+            //    btnConnect.BackColor = Color.FromArgb(215, 83, 86);
+            //    btnConnect.OnHovercolor = Color.FromArgb(215, 83, 86);
+            //    if (txtError.Text.Contains("does not exist"))
+            //    {
+            //        lnDomain.ForeColor = Color.FromArgb(215, 83, 86);
+            //    }
+            //    else
+            //    {
+            //        lnEmail.ForeColor = Color.FromArgb(215, 83, 86);
+            //        lnPassword.ForeColor = Color.FromArgb(215, 83, 86);
+            //    }
 
-        private void bgwSyncData_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            try
-            {
-                if (!e.Cancel)
-                {
+            //    tmrButtonColor.Start();
+            //    Requests.ErrorOccurred = false;
+            //    return;
+            //}
 
-                }
-            }
-            finally
-            {
-                doneEvent.Set();
-            }
+            #endregion
 
-            // check if user can login
+            #region Help Center Data
 
-            // sync user data
-            //  profile pic
-            //  profile info
+            var catData = await _requests.GetCategoryData();
+            var sectData = await _requests.GetSectionData();
+            //var artData = await _requests.GetArticleData();
+            //var artCommentData
 
-            // sync application data
-            //  get help center data
-            //  get community data
-        }
+            #endregion
 
-        private void bgwSyncData_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
+            #region ErrorCheck
 
-        }
+            ErrorCheck();
 
-        private void bgwSyncData_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-            btnConnect.Text = @"Successful!";
-        }
-
-        private void bgwSyncUser_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            try
-            {
-                if (!e.Cancel)
-                {
-                    requests.UserValidated = Requests.GetUserData();
-                }
-            }
-            finally
-            {
-                doneEvent.Set();
-            }
-        }
-
-        private void bgwSyncUser_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-
-            btnConnect.Text = requests.UserValidated ? @"Connected!" : @"Login Failed!";
+            #endregion
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ConnectOnEnterClicked(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            btnConnect_Click(this, null);
+            e.Handled = true;
+        }
+
+        private void RemeberMeOnEnterClicked(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            swRememberMe.Value = !swRememberMe.Value;
+            e.Handled = true;
         }
 
         private void maxHandler(object sender, MouseEventArgs e)
@@ -177,17 +127,116 @@ namespace kBackup.Forms
             WindowState = FormWindowState.Minimized;
         }
 
-        private static void InitializeApplication()
+        private void InitializeApplication()
         {
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup"))
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            Settings.Default.dataFolder = appDataPath;
+
+            if (!Directory.Exists(appDataPath + "\\kbackup"))
             {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup");
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup\\user");
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\kbackup\\data");
+                Directory.CreateDirectory(appDataPath + "\\kbackup");
             }
 
-            Settings.Default.dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            if (!Directory.Exists(appDataPath + "\\kbackup\\user"))
+            {
+                Directory.CreateDirectory(appDataPath + "\\kbackup\\user");
+            }
+
+            if (!Directory.Exists(appDataPath + "\\kbackup\\data"))
+            {
+                Directory.CreateDirectory(appDataPath + "\\kbackup\\data");
+            }
+
+            if (!Directory.Exists(appDataPath + "\\kbackup\\data\\json"))
+            {
+                Directory.CreateDirectory(appDataPath + "\\kbackup\\data\\json");
+            }
+
+            if (Settings.Default.rememberMe)
+            {
+                swRememberMe.Value = Settings.Default.rememberMe;
+                txtDomain.Text = Settings.Default.domain;
+                txtEmail.Text = Settings.Default.email;
+                txtPassword.Text = Settings.Default.password;
+            }
+
             Settings.Default.Save();
+        }
+
+        private bool CheckCompletedFields()
+        {
+            var result = true;
+            if (txtDomain.Text.Trim() == string.Empty)
+            {
+                lnDomain.ForeColor = Color.FromArgb(215, 83, 86);
+                result = false;
+            }
+
+            if (txtEmail.Text.Trim() == string.Empty)
+            {
+                lnEmail.ForeColor = Color.FromArgb(215, 83, 86);
+                result = false;
+            }
+
+            if (txtPassword.Text.Trim() == string.Empty)
+            {
+                lnPassword.ForeColor = Color.FromArgb(215, 83, 86);
+                result = false;
+            }
+            return result;
+        }
+
+        private void ErrorCheck()
+        {
+            if (Requests.ErrorOccurred)
+            {
+                txtError.Text = Requests.ErrorMessage;
+                txtError.Visible = true;
+            }
+            else
+            {
+                btnConnect.Text = @"Connected!";
+                tmrLoginSuccessful.Start();
+            }
+        }
+
+        private void LoginSuccessful()
+        {
+            Hide();
+
+            if (!swRememberMe.Value)
+            {
+                Settings.Default.domain = string.Empty;
+                Settings.Default.email = string.Empty;
+                Settings.Default.password = string.Empty;
+            }
+
+            Settings.Default.rememberMe = swRememberMe.Value;
+            Settings.Default.Save();
+
+            var mf = new FrmMain();
+            mf.Show();
+        }
+
+        private void tmrButtonColor_Tick(object sender, EventArgs e)
+        {
+            btnConnect.Text = @"Connect";
+            btnConnect.Activecolor = Color.FromArgb(46, 139, 87);
+            btnConnect.BackColor = Color.FromArgb(46, 139, 87);
+            btnConnect.OnHovercolor = Color.FromArgb(46, 139, 87);
+            btnConnect.Enabled = true;
+            tmrButtonColor.Stop();
+        }
+
+        private void tmrLoginSuccessful_Tick(object sender, EventArgs e)
+        {
+            LoginSuccessful();
+            tmrLoginSuccessful.Stop();
+        }
+
+        private void txtBoxes_TextChanged(object sender, EventArgs e)
+        {
+            txtError.Text = string.Empty;
         }
 
         #region UnderlineAnim

@@ -29,47 +29,6 @@ namespace kBackup.Classes
             return r.Replace(filename, replaceChar);
         }
 
-        /// <summary>
-        /// Saves collection of content locally.
-        /// </summary>
-        /// <param name="articles">Collection of articles.</param>
-        /// <param name="htmlContent">Html content of the article.</param>
-        /// <returns>Returns True if article saved successfully, False if article not saved.</returns>
-        private static bool SaveArticle(ZApiModel.ArticleCollection articles, StringBuilder htmlContent)
-        {
-            foreach (var article in articles.articles ?? articles.topics)
-            {
-                ////Write article heading and content into text file and save as html
-                //ArticleId = article.id.ToString();
-                //htmlContent.AppendLine("<h1>" + article.title + "</h1>");
-                //htmlContent.AppendLine(article.body);
-
-                //try
-                //{
-                //    Directory.CreateDirectory(BackupFolder);
-                //    File.WriteAllText(BackupFolder + @"\" + ArticleId + ".html", htmlContent.ToString(), Encoding.UTF8);
-
-                //    //Log the backed up resource in the backup log
-                //    using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
-                //    {
-                //        sw.WriteLine("article_" + (article.section_id.ToString() ?? ArticleId) + ": " + (article.html_url ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
-                //    }
-
-                //    GetImageList(htmlContent, article, article.section_id);
-                //}
-                //catch (UnauthorizedAccessException)
-                //{
-                //    //Occurs when user selects a directory from the folder browser dialog that the user does not have access to
-                //    MessageBox.Show(Form.ActiveForm,
-                //        @"You do not have access to the selected directory, please select Backup and try again.");
-                //    return false;
-                //}
-
-                //htmlContent.Clear();
-            }
-            return true;
-        }
-
         public static void SaveSettings()
         {
 
@@ -80,7 +39,12 @@ namespace kBackup.Classes
 
         }
 
-        public void ReadUserData()
+        public void LoadData()
+        {
+
+        }
+
+        private void ReadUserData()
         {
             // Read existing json data
             var jsonData = File.ReadAllText(Settings.Default.dataFolder + "\\user\\profile.json");
@@ -88,36 +52,64 @@ namespace kBackup.Classes
             // De-serialize to object or create new list
             var employeeList = JsonConvert.DeserializeObject<List<ZApiModel.UserCollection>>(jsonData) ?? new List<ZApiModel.UserCollection>();
 
+            //add to list here
+            if (employeeList.Count <= 0)
+            {
+                //add entry here
+            }
+            
             // Update json data string
             jsonData = JsonConvert.SerializeObject(employeeList);
             File.WriteAllText(Settings.Default.dataFolder + "\\user\\profile.json", jsonData);
         }
 
-        public void ReadCategoryData()
+        public async Task<ZApiModel.CategoryCollection> ReadCategoryData()
+        {
+
+            string jsonData;
+            using (var reader = File.OpenText(Settings.Default.dataFolder + "\\kBackup\\data\\json\\categories.json"))
+            {
+                jsonData = await reader.ReadToEndAsync();
+                // Do something with fileText...
+            }
+
+            // De-serialize to object or create new list
+            var categories = JsonConvert.DeserializeObject<ZApiModel.CategoryCollection>(jsonData); //?? new List<ZApiModel.CategoryCollection>();
+
+            ////add to list here
+            //if (categories.Count <= 0)
+            //{
+            //    //add entry here
+            //}
+
+            return categories;
+
+            //// Update json data string
+            //jsonData = JsonConvert.SerializeObject(categories);
+            //File.WriteAllText(Settings.Default.dataFolder + "\\user\\profile.json", jsonData);
+        }
+
+        private void ReadSectionData()
         {
         }
 
-        public void ReadSectionData()
+        private void ReadArticleData()
         {
         }
 
-        public void ReadArticleData()
+        private void ReadArticleCommentData()
         {
         }
 
-        public void ReadArticleCommentData()
+        private void ReadTopicData()
         {
         }
 
-        public void ReadTopicData()
+        private void ReadPostData()
         {
         }
 
-        public void ReadPostData()
-        {
-        }
-
-        public void ReadPostCommentData()
+        private void ReadPostCommentData()
         {
         }
 
@@ -128,7 +120,7 @@ namespace kBackup.Classes
         /// <param name="password">The password to decrypt the input string with.</param>
         /// <returns>Returns the decrypted value.</returns>
         /// <remarks>Used for decryption of Registry path in web.config file.</remarks>
-        private string AES_Decrypt(string input, string password)
+        public string AES_Decrypt(string input, string password)
         {
 
             RijndaelManaged aes = new RijndaelManaged();
@@ -193,6 +185,47 @@ namespace kBackup.Classes
 
             }
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Saves collection of content locally.
+        /// </summary>
+        /// <param name="articles">Collection of articles.</param>
+        /// <param name="htmlContent">Html content of the article.</param>
+        /// <returns>Returns True if article saved successfully, False if article not saved.</returns>
+        private static bool SaveArticle(ZApiModel.ArticleCollection articles, StringBuilder htmlContent)
+        {
+            foreach (var article in articles.articles ?? articles.topics)
+            {
+                ////Write article heading and content into text file and save as html
+                //ArticleId = article.id.ToString();
+                //htmlContent.AppendLine("<h1>" + article.title + "</h1>");
+                //htmlContent.AppendLine(article.body);
+
+                //try
+                //{
+                //    Directory.CreateDirectory(BackupFolder);
+                //    File.WriteAllText(BackupFolder + @"\" + ArticleId + ".html", htmlContent.ToString(), Encoding.UTF8);
+
+                //    //Log the backed up resource in the backup log
+                //    using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
+                //    {
+                //        sw.WriteLine("article_" + (article.section_id.ToString() ?? ArticleId) + ": " + (article.html_url ?? "https://" + Domain + ".zendesk.com/entries/" + ArticleId));
+                //    }
+
+                //    GetImageList(htmlContent, article, article.section_id);
+                //}
+                //catch (UnauthorizedAccessException)
+                //{
+                //    //Occurs when user selects a directory from the folder browser dialog that the user does not have access to
+                //    MessageBox.Show(Form.ActiveForm,
+                //        @"You do not have access to the selected directory, please select Backup and try again.");
+                //    return false;
+                //}
+
+                //htmlContent.Clear();
+            }
+            return true;
         }
     }
 }

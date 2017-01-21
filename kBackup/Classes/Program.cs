@@ -15,7 +15,7 @@ namespace kBackup.Classes
             Bunifu.Framework.License.Authenticate("alpha2twin@gmail.com", "SMyajThtkcHnlxI9ABhfdMFgk7cd6CVTTXMVFZ8HZqw=");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+            Application.Run(new FrmLogin());
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("kBackup")]
 [assembly: AssemblyDescription("Backup program for Zendesk Help Center articles.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fail2Reap")]
+[assembly: AssemblyCompany("kBackup")]
 [assembly: AssemblyProduct("kBackup")]
 [assembly: AssemblyCopyright("Copyright © Fail2Reap 2016")]
 [assembly: AssemblyTrademark("")]

@@ -66,7 +66,7 @@ namespace RenewalManager.Classes
     /// </summary>
     public class IdgJob : IJob
     {
-        private readonly ZendeskApi _zdapi = new ZendeskApi();
+        //private readonly ZendeskApi _zdapi = new ZendeskApi();
 
         /// <summary>
         /// Executes function for the daily check for expired licenses.

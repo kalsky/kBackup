@@ -89,6 +89,11 @@ namespace kBackup.Classes
 
         #region Help Center
 
+        public List<Category> Categories { get; set; }
+        public List<Section> Sections { get; set; }
+        public List<Article> Articles { get; set; }
+        public List<ArticleComment> ArticleComments { get; set; }
+      
         public class CategoryCollection
         {
             public IList<Category> categories { get; set; }
@@ -104,7 +109,7 @@ namespace kBackup.Classes
 
         public class Category
         {
-            public int id { get; set; }
+            public Int64 id { get; set; }
             public string url { get; set; }
             public string html_url { get; set; }
             public int position { get; set; }
@@ -217,6 +222,10 @@ namespace kBackup.Classes
 
         #region Community
 
+        public List<Topic> Topics { get; set; }
+        public List<Post> Posts { get; set; }
+        public List<PostComment> PostComments { get; set; }
+
         public class TopicCollection
         {
             public IList<Topic> topics { get; set; }
@@ -276,7 +285,7 @@ namespace kBackup.Classes
 
         public class PostCommentCollection
         {
-            public IList<Comment> comments { get; set; }
+            public IList<PostComment> comments { get; set; }
             public int page { get; set; }
             public object previous_page { get; set; }
             public object next_page { get; set; }
@@ -285,7 +294,7 @@ namespace kBackup.Classes
             public int count { get; set; }
         }
 
-        public class Comment
+        public class PostComment
         {
             public int id { get; set; }
             public string body { get; set; }

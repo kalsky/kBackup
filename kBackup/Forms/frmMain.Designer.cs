@@ -67,15 +67,12 @@
             this.pnlCategories = new System.Windows.Forms.Panel();
             this.dgCategories = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.pnlNoContent = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lblRefresh = new System.Windows.Forms.LinkLabel();
             this.pbNoContent = new System.Windows.Forms.PictureBox();
             this.pnlCommunity = new System.Windows.Forms.Panel();
             this.pnlMigrate = new System.Windows.Forms.Panel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.bunifuColorTransition1 = new Bunifu.Framework.UI.BunifuColorTransition(this.components);
-            this.bgwSyncData = new System.ComponentModel.BackgroundWorker();
-            this.bunifuWebClient1 = new Bunifu.Framework.UI.BunifuWebClient(this.components);
             this.pnlTopBar.SuspendLayout();
             this.pnlSideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
@@ -689,7 +686,7 @@
             // 
             // pnlNoContent
             // 
-            this.pnlNoContent.Controls.Add(this.linkLabel1);
+            this.pnlNoContent.Controls.Add(this.lblRefresh);
             this.pnlNoContent.Controls.Add(this.pbNoContent);
             this.animMenu.SetDecoration(this.pnlNoContent, BunifuAnimatorNS.DecorationType.None);
             this.pnlNoContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -698,21 +695,22 @@
             this.pnlNoContent.Size = new System.Drawing.Size(875, 561);
             this.pnlNoContent.TabIndex = 1;
             // 
-            // linkLabel1
+            // lblRefresh
             // 
-            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.linkLabel1.AutoSize = true;
-            this.animMenu.SetDecoration(this.linkLabel1, BunifuAnimatorNS.DecorationType.None);
-            this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkColor = System.Drawing.Color.SeaGreen;
-            this.linkLabel1.Location = new System.Drawing.Point(383, 360);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(74, 25);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Refresh";
-            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.SeaGreen;
+            this.lblRefresh.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblRefresh.AutoSize = true;
+            this.animMenu.SetDecoration(this.lblRefresh, BunifuAnimatorNS.DecorationType.None);
+            this.lblRefresh.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefresh.LinkColor = System.Drawing.Color.SeaGreen;
+            this.lblRefresh.Location = new System.Drawing.Point(383, 360);
+            this.lblRefresh.Name = "lblRefresh";
+            this.lblRefresh.Size = new System.Drawing.Size(74, 25);
+            this.lblRefresh.TabIndex = 1;
+            this.lblRefresh.TabStop = true;
+            this.lblRefresh.Text = "Refresh";
+            this.lblRefresh.VisitedLinkColor = System.Drawing.Color.SeaGreen;
+            this.lblRefresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblRefresh_LinkClicked);
             // 
             // pbNoContent
             // 
@@ -766,31 +764,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // bunifuColorTransition1
-            // 
-            this.bunifuColorTransition1.Color1 = System.Drawing.Color.White;
-            this.bunifuColorTransition1.Color2 = System.Drawing.Color.White;
-            this.bunifuColorTransition1.ProgessValue = 0;
-            // 
-            // bgwSyncData
-            // 
-            this.bgwSyncData.WorkerReportsProgress = true;
-            this.bgwSyncData.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwSyncData_DoWork);
-            this.bgwSyncData.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwSyncData_ProgressChanged);
-            this.bgwSyncData.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwSyncData_RunWorkerCompleted);
-            // 
-            // bunifuWebClient1
-            // 
-            this.bunifuWebClient1.AllowReadStreamBuffering = false;
-            this.bunifuWebClient1.AllowWriteStreamBuffering = false;
-            this.bunifuWebClient1.BaseAddress = "";
-            this.bunifuWebClient1.CachePolicy = null;
-            this.bunifuWebClient1.Credentials = null;
-            this.bunifuWebClient1.Encoding = ((System.Text.Encoding)(resources.GetObject("bunifuWebClient1.Encoding")));
-            this.bunifuWebClient1.Headers = ((System.Net.WebHeaderCollection)(resources.GetObject("bunifuWebClient1.Headers")));
-            this.bunifuWebClient1.QueryString = ((System.Collections.Specialized.NameValueCollection)(resources.GetObject("bunifuWebClient1.QueryString")));
-            this.bunifuWebClient1.UseDefaultCredentials = false;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,8 +782,8 @@
             captionImage1.Size = new System.Drawing.Size(26, 26);
             this.CaptionImages.Add(captionImage1);
             this.ClientSize = new System.Drawing.Size(925, 600);
-            this.Controls.Add(this.pnlCommunity);
             this.Controls.Add(this.pnlNoContent);
+            this.Controls.Add(this.pnlCommunity);
             this.Controls.Add(this.pnlMigrate);
             this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.pnlHelpCenter);
@@ -823,6 +796,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmMain";
             this.ShowIcon = false;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.pnlTopBar.ResumeLayout(false);
             this.pnlSideMenu.ResumeLayout(false);
@@ -866,15 +840,12 @@
         private System.Windows.Forms.Panel pnlArticles;
         private System.Windows.Forms.Panel pnlSections;
         private System.Windows.Forms.Panel pnlCategories;
-        private Bunifu.Framework.UI.BunifuColorTransition bunifuColorTransition1;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgArticles;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgSections;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgCategories;
         private System.Windows.Forms.Panel pnlNoContent;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lblRefresh;
         private System.Windows.Forms.PictureBox pbNoContent;
-        private System.ComponentModel.BackgroundWorker bgwSyncData;
-        private Bunifu.Framework.UI.BunifuWebClient bunifuWebClient1;
     }
 }
 
