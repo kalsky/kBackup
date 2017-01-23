@@ -359,9 +359,9 @@ namespace kBackup.Classes
                 var fileName = RemoveInvalidFilePathCharacters(fullFileName[0].Trim(Convert.ToChar("/")), "_");
 
                 if (!DownloadImage(url, BackupFolder + "\\images\\" + RemoveInvalidFilePathCharacters((article.Title + " (" + ArticleId + ")").Trim(Convert.ToChar("/")), "_").TrimStart(Convert.ToChar("_")) + "_" + fileName, sectionId))
-                    continue;
-
-                //Log the backed up resource in the backup log
+                    continue; 
+                 
+                //Log the backed up resource in the backup log 
                 using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
                 {
                     sw.WriteLine("image_" + (article.Section_id ?? ArticleId) + ": " + url);
