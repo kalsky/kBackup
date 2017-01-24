@@ -359,8 +359,8 @@ namespace kBackup.Classes
                 var fileName = RemoveInvalidFilePathCharacters(fullFileName[0].Trim(Convert.ToChar("/")), "_");
 
                 if (!DownloadImage(url, BackupFolder + "\\images\\" + RemoveInvalidFilePathCharacters((article.Title + " (" + ArticleId + ")").Trim(Convert.ToChar("/")), "_").TrimStart(Convert.ToChar("_")) + "_" + fileName, sectionId))
-                    continue; 
-                 
+                    continue;
+
                 //Log the backed up resource in the backup log 
                 using (var sw = File.AppendText(BackupFolder + @"\BackupLog.txt"))
                 {
@@ -380,6 +380,12 @@ namespace kBackup.Classes
         /// </returns>
         private static bool DownloadImage(string uri, string filePathName, string sectionId)
         {
+
+            using (var sw = File.AppendText(BackupFolder + @"\urlLog.txt"))
+            {
+                sw.WriteLine("Before: " + uri);
+            }
+
             if (uri.Contains("base64"))
             {
                 var fp = filePathName.Substring(0, filePathName.LastIndexOf(Convert.ToChar(@"\")) + 20);
@@ -395,6 +401,11 @@ namespace kBackup.Classes
             }
             else
             {
+                if (uri.StartsWith("//"))
+                {
+                    uri = "https:" + uri;
+                }
+
                 if (!uri.Contains("http://") && !uri.Contains("https://") && !uri.Contains("//") && !uri.Contains("////"))
                 {
                     uri = "https://" + Domain + ".zendesk.com" + uri;
@@ -403,6 +414,11 @@ namespace kBackup.Classes
                 if (uri.Contains("////"))
                 {
                     uri = uri.Replace("////", "http://");
+                }
+
+                using (var sw = File.AppendText(BackupFolder + @"\urlLog.txt"))
+                {
+                    sw.WriteLine("After: " + uri);
                 }
 
                 var imgUri = new Uri(uri, UriKind.RelativeOrAbsolute);
