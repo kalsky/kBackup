@@ -150,9 +150,9 @@ C:\Git\kBackupv0.7\kBackup\bin\Debug\Newtonsoft.Json.dll
 C:\Git\kBackupv0.7\kBackup\bin\Debug\EnvDTE.dll
 C:\Git\kBackupv0.7\kBackup\bin\Debug\stdole.dll
 C:\Git\kBackupv0.7\kBackup\bin\Debug\Newtonsoft.Json.xml
-C:\Git\kBackupv0.7\kBackup\obj\Debug\kBackup.csprojResolveAssemblyReference.cache
 C:\Git\kBackupv0.7\kBackup\obj\Debug\kBackup.Forms.Main.resources
 C:\Git\kBackupv0.7\kBackup\obj\Debug\kBackup.Properties.Resources.resources
 C:\Git\kBackupv0.7\kBackup\obj\Debug\kBackup.csproj.GenerateResource.Cache
 C:\Git\kBackupv0.7\kBackup\obj\Debug\kBackup.exe
 C:\Git\kBackupv0.7\kBackup\obj\Debug\kBackup.pdb
+C:\Git\kBackupv0.7\kBackup\obj\Debug\kBackup.csprojResolveAssemblyReference.cache
