@@ -1,4 +1,12 @@
 Release Notes 
+//////////////////////////////V0.9//////////////////////////////
+Resolved Bugs
+•	Fixed issue where backup folder was being created to same 
+	level directory as selected from Folder Browser dialog.
+•	Fixed issue where if a URL began with ////, the URL was 
+	bring reformatted incorrectly.
+
+
 //////////////////////////////V0.8//////////////////////////////
 Resolved Bugs
 •	Fixed issue where images with URL's beginning with // caused 

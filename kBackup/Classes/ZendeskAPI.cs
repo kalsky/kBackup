@@ -401,12 +401,14 @@ namespace kBackup.Classes
             }
             else
             {
-                if (uri.StartsWith("//"))
+                if (uri.StartsWith("//") && !uri.StartsWith("////"))
                 {
                     uri = "https:" + uri;
                 }
 
-                if (!uri.Contains("http://") && !uri.Contains("https://") && !uri.Contains("//") && !uri.Contains("////"))
+                if (!uri.Contains("http://") && !uri.Contains("https://") && 
+                    !uri.StartsWith("http://") && !uri.StartsWith("https://") && 
+                    !uri.Contains("//") && !uri.Contains("////"))
                 {
                     uri = "https://" + Domain + ".zendesk.com" + uri;
                 }

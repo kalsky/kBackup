@@ -40,7 +40,7 @@ namespace kBackup.Forms
                 //Validate the users credentials.
                 if (!ZendeskApi.ValidateUser()) return;
                 fldrBackupLocation.ShowDialog();
-                ZendeskApi.BackupFolder = fldrBackupLocation.DirectoryPath + @"Backup_" + DateTime.Now.ToString("yyyyMMdd-hhmmss");
+                ZendeskApi.BackupFolder = fldrBackupLocation.DirectoryPath + @"\Backup_" + DateTime.Now.ToString("yyyyMMdd-hhmmss");
 
                 //Ensures that path is not empty string e.g. user cancels or X out of folder browser dialog.
                 if (fldrBackupLocation.DirectoryPath.Trim() == string.Empty)
