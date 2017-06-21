@@ -39,24 +39,51 @@ namespace kBackup.Forms
             {
                 //Validate the users credentials.
                 if (!ZendeskApi.ValidateUser()) return;
-                fldrBackupLocation.ShowDialog();
-                ZendeskApi.BackupFolder = fldrBackupLocation.DirectoryPath + @"\Backup_" + DateTime.Now.ToString("yyyyMMdd-hhmmss");
+
+                string folder = @"c:\temp\zen"; //set a default one here if you don't want to open the dialog
+                if (folder.Trim() == string.Empty)
+                { 
+                    fldrBackupLocation.ShowDialog();
+                    folder = fldrBackupLocation.DirectoryPath;
+                }
+                ZendeskApi.BackupFolder = folder + @"\Backup_" + DateTime.Now.ToString("yyyyMMdd-hhmmss");
 
                 //Ensures that path is not empty string e.g. user cancels or X out of folder browser dialog.
-                if (fldrBackupLocation.DirectoryPath.Trim() == string.Empty)
+                if (folder.Trim() == string.Empty)
                 {
                     ZendeskApi.BackupFolder = string.Empty;
                     return;
                 }
-            
-                //Retrieve all articles and associated images.
-                if (ZendeskApi.GetArticles(cmbPortal))
+
+                ZendeskApi.GetTopics(1);
+
+                if (postsChk.Checked)
                 {
-                    MessageBox.Show(this, @"Backup completed to path: " + ZendeskApi.BackupFolder, @"Backup Complete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Retrieve all posts and associated images.
+                    if (ZendeskApi.GetPosts(cmbPortal, 1))
+                    {
+                        //MessageBox.Show(this, @"Posts backup completed to path: " + ZendeskApi.BackupFolder, @"Backup Complete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, @"The posts backup did not complete successfully.", @"Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+
+                System.Threading.Thread.Sleep(2000);
+                ZendeskApi.GetSections(1);
+
+                if (articlesChk.Checked)
                 {
-                    MessageBox.Show(this, @"The backup did not complete successfully.", @"Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Retrieve all articles and associated images.
+                    if (ZendeskApi.GetArticles(cmbPortal, 1))
+                    {
+                        MessageBox.Show(this, @"Articles backup completed to path: " + ZendeskApi.BackupFolder, @"Backup Complete!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, @"The articles backup did not complete successfully.", @"Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else
@@ -64,5 +91,7 @@ namespace kBackup.Forms
                 MessageBox.Show(this, @"Please enter a domain before continuing.", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        
     }
 }

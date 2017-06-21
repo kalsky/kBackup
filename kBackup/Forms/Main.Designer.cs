@@ -47,6 +47,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.fldrBackupLocation = new Syncfusion.Windows.Forms.FolderBrowser(this.components);
             this.cmbPortal = new System.Windows.Forms.ComboBox();
+            this.postsChk = new System.Windows.Forms.CheckBox();
+            this.articlesChk = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtDomain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
@@ -267,6 +269,34 @@
             this.cmbPortal.Size = new System.Drawing.Size(232, 29);
             this.cmbPortal.TabIndex = 3;
             // 
+            // postsChk
+            // 
+            this.postsChk.AutoSize = true;
+            this.postsChk.BackColor = System.Drawing.Color.Transparent;
+            this.postsChk.Checked = true;
+            this.postsChk.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.postsChk.ForeColor = System.Drawing.SystemColors.Control;
+            this.postsChk.Location = new System.Drawing.Point(13, 13);
+            this.postsChk.Name = "postsChk";
+            this.postsChk.Size = new System.Drawing.Size(74, 17);
+            this.postsChk.TabIndex = 10;
+            this.postsChk.Text = "get posts";
+            this.postsChk.UseVisualStyleBackColor = false;
+            // 
+            // articlesChk
+            // 
+            this.articlesChk.AutoSize = true;
+            this.articlesChk.BackColor = System.Drawing.Color.Transparent;
+            this.articlesChk.Checked = true;
+            this.articlesChk.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.articlesChk.ForeColor = System.Drawing.SystemColors.Control;
+            this.articlesChk.Location = new System.Drawing.Point(13, 36);
+            this.articlesChk.Name = "articlesChk";
+            this.articlesChk.Size = new System.Drawing.Size(82, 17);
+            this.articlesChk.TabIndex = 11;
+            this.articlesChk.Text = "get articles";
+            this.articlesChk.UseVisualStyleBackColor = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,6 +313,8 @@
             captionImage1.Size = new System.Drawing.Size(26, 26);
             this.CaptionImages.Add(captionImage1);
             this.ClientSize = new System.Drawing.Size(418, 384);
+            this.Controls.Add(this.articlesChk);
+            this.Controls.Add(this.postsChk);
             this.Controls.Add(this.cmbPortal);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pnlMain);
@@ -331,6 +363,8 @@
         private System.Windows.Forms.Label label3;
         private Syncfusion.Windows.Forms.FolderBrowser fldrBackupLocation;
         private System.Windows.Forms.ComboBox cmbPortal;
+        private System.Windows.Forms.CheckBox postsChk;
+        private System.Windows.Forms.CheckBox articlesChk;
     }
 }
 
